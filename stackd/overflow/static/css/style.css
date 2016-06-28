@@ -694,7 +694,40 @@ header nav a:hover {
  * 5.0 Content
  */
 
+#page {
 
+}
+
+/*post*/
+#post form {
+    padding-right: 20px
+}
+#post .input-wrapper {
+    padding: 10px 0;
+}
+#post .input-wrapper input {
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 3px;
+    font-size: 13px;
+}
+#post h3 {
+    font-size: 13px;
+    margin: 0;
+}
+#post input[type="submit"] {
+    background-color: #0095ff;
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 #66bfff;
+    transition: background-color .3s;
+}
+#post input[type="submit"]:hover {
+    background-color: #07c;
+}
+/*end post*/
 
 /**
  * 6.0 Footer
