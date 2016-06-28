@@ -8,12 +8,12 @@ def add_new_question_to_database(request, title, detail, tags, email):
     q.save()
 
 
-def upvote_question(request, primary_key):
+def upvote(request, primary_key):
     q = Question.objects.get(primary_key)
     q.upvotes += 1
 
 
-def downvote_question(request, primary_key):
+def downvote(request, primary_key):
     q = Question.objects.get(primary_key)
     q.downvotes += 1
 
