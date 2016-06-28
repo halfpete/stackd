@@ -8,7 +8,7 @@ import datetime
 
 class Question (models.Model):
 	author = models.EmailField
-	question_title = models.CharField(max_length = 200)
+	question_title = models.TextField(max_length = 200)
 	question_detail = models.TextField
 	tags = models.CharField(max_length = 200)
 	pub_date = models.DateTimeField('date published')
@@ -17,7 +17,7 @@ class Question (models.Model):
 	downvotes = models.PositiveIntegerField(default = 0)
 	netvotes = models.IntegerField(default = 0)
 	def __str__(self):
-		return self.question_text
+		return self.question_title
 
 class Comment (models.Model):
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)

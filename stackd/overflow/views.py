@@ -4,9 +4,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question, Comment
 from django.utils import timezone
+from django.template import loader, RequestContext
+from django.db import connection
 
 def index(request):
-    return render (request, 'overflow/index.html')
+	question_list = Question.objects.order_by('-pub_date')
+	template = loader.get_template('overflow/index.html')
+	context = {
+	'question_list': question_list,
+	}
+	return HttpResponse(template.render(context, request))
 
 def add_new_question_to_database(request, title, detail, tags, email):
 	q = Question(question_title = title, question_detail = detail, tags = tags, author = email, pub_date = timezone.now(), status = 'unsolved')
