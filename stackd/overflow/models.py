@@ -8,7 +8,7 @@ import datetime
 
 class Question (models.Model):
 	author = models.EmailField
-	question_title = models.CharField(max_length = 200)
+	question_title = models.TextField(max_length = 200)
 	question_detail = models.TextField
 	tags = models.CharField(max_length = 200)
 	pub_date = models.DateTimeField('date published')
