@@ -17,7 +17,7 @@ def index(request):
 
 def detail(request, question_id):
 	question = Question.objects.get(id = question_id)
-	comment_list = question.comment_set.all().order_by('upvotes')
+	comment_list = question.comment_set.all().order_by('-upvotes')
 	context = {
 	'question': question,
 	'comment_list': comment_list,
