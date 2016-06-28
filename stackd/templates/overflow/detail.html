@@ -3,11 +3,10 @@
 Responses:<br> <br>
 
 {% if comment_list %}
-	<li>
+	
 	{% for comment in comment_list %}
-		Comment: {{comment.comment_text}}<br>
+		<li> Comment: {{comment.comment_text}}<br></li>
 		Published: {{comment.pub_date}}<br>
 		Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
 	{% endfor %}
-	</li>
 {% endif %}
