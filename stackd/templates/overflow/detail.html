@@ -7,6 +7,7 @@ Responses:<br>
 	{% for comment in comment_list %}
 		Comment: {{comment.comment_text}}<br>
 		Published {{comment.pub_date}}:<br>
+		Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)
 	{% endfor %}
 	</li>
 {% endif %}
