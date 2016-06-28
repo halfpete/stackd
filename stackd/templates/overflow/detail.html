@@ -1,3 +1,6 @@
+{% extends 'overflow/base.html' %}
+
+{% block content %}
 <p><h2>{{question}}</h2></p><br><br>
 
 Responses:<br> <br>
@@ -10,3 +13,4 @@ Responses:<br> <br>
 		Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
 	{% endfor %}
 {% endif %}
+{% endblock %}
