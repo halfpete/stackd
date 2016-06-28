@@ -20,6 +20,7 @@ class Question (models.Model):
 	def __str__(self):
 		return self.question_title
 
+
 class Comment (models.Model):
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
 	comment_text = models.TextField(max_length = 200000)
@@ -31,3 +32,18 @@ class Comment (models.Model):
 		return self.comment_text
 	def netvotes(self):
 		return self.upvotes-self.downvotes
+
+
+class Answer (models.Model):
+	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	answer_text = models.TextField(max_length=200000)
+	author = models.CharField(max_length=200, default="anonymous@pandora.com")
+	upvotes = models.IntegerField(default=0)
+	downvotes = models.IntegerField(default=0)
+	pub_date = models.DateTimeField('date published')
+
+	def __str__(self):
+		return self.comment_text
+
+	def netvotes(self):
+		return self.upvotes - self.downvotes

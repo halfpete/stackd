@@ -23,5 +23,17 @@ class QuestionTestCase(TestCase):
         downvote_question(question)
         self.assertEqual(question.downvotes, 1)
 
-    def
+    def test_netvotes_question(self):
+        question = Question()
+        downvote_question(question)
+        downvote_question(question)
+        downvote_question(question)
+        self.assertEqual(question.netvotes(), -3)
+        upvote_question(question)
+        upvote_question(question)
+        upvote_question(question)
+        upvote_question(question)
+        self.assertEqual(question.netvotes(), 1)
+
+
 
