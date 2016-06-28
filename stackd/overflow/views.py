@@ -19,9 +19,9 @@ def index(request):
 
 def detail(request, question_id):
     question = Question.objects.get(id = question_id)
-    email = request.POST.get('email_field')
-    new_comment = request.POST.get('comment')
-    if (email != None and new_comment != None):
+    email = request.POST.get('email_field', '')
+    new_comment = request.POST.get('comment', '')
+    if (email != '' and new_comment != ''):
         add_comment_to_question(request, question, new_comment, email)
     comment_list = question.comment_set.all().order_by('-upvotes')
     context = {
@@ -31,11 +31,11 @@ def detail(request, question_id):
     return render(request, 'overflow/detail.html', context)
 
 def post(request):
-    email = request.POST.get('email_field')
-    title = request.POST.get('title')
-    detail = request.POST.get('detail')
-    tags = request.POST.get('tags')
-    if (email != None and title != None and detail != None and tags != None):
+    email = request.POST.get('email_field', '')
+    title = request.POST.get('title', '')
+    detail = request.POST.get('detail', '')
+    tags = request.POST.get('tags', '')
+    if (email != '' and title != '' and detail != '' and tags != ''):
         add_new_question_to_database(request, title, detail, tags, email)
         return HttpResponseRedirect('/') 
     return render(request, 'overflow/post.html')
