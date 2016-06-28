@@ -18,13 +18,17 @@ def index(request):
 
 
 def detail(request, question_id):
-	question = Question.objects.get(id = question_id)
-	comment_list = question.comment_set.all().order_by('-upvotes')
-	context = {
-	'question': question,
-	'comment_list': comment_list,
-	}
-	return render(request, 'overflow/detail.html', context)
+    question = Question.objects.get(id = question_id)
+    email = request.POST.get('email_field')
+    new_comment = request.POST.get('comment')
+    if (email != None and new_comment != None):
+        add_comment_to_question(request, question, new_comment, email)
+    comment_list = question.comment_set.all().order_by('-upvotes')
+    context = {
+    'question': question,
+    'comment_list': comment_list,
+    }
+    return render(request, 'overflow/detail.html', context)
 
 def post(request):
     email = request.POST.get('email_field')
