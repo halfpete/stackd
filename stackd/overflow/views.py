@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Comment
 from django.utils import timezone
 from django.template import loader, RequestContext
@@ -26,12 +26,23 @@ def detail(request, question_id):
 	}
 	return render(request, 'overflow/detail.html', context)
 
+def post(request):
+    email = request.POST.get('email_field')
+    title = request.POST.get('title')
+    detail = request.POST.get('detail')
+    tags = request.POST.get('tags')
+    if (email != None and title != None and detail != None and tags != None):
+        add_new_question_to_database(request, title, detail, tags, email)
+        return HttpResponseRedirect('/') 
+    return render(request, 'overflow/post.html')
+
 def add_new_question_to_database(request, title, detail, tags, email):
-    q = Question(question_title=title, question_detail=detail, tags=tags, author=email, pub_date=timezone.now(),
-                 status='unsolved')
+    q = Question(author = email, question_title = title, question_detail = detail, tags = tags, pub_date = timezone.now(), status = 'unsolved')
     q.save()
+    print "question added"
 
 
 def add_comment_to_question(request, question, text, email):
     c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
     c.save()
+
