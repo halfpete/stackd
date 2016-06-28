@@ -1,0 +1,35 @@
+{% block content %}
+ Please fill out the information below before posting your question:
+
+ <form method="post", action"">
+ {% csrf_token %}
+ Your Email: <input type="text" name="email_field" id="email_field"><br>
+ Title of Question: <input type="text" name="title" id="title"><br>
+ Detail - as much as necessary: <input type="textarea" name="detail" id="detail"><br>
+ Tags - any relevant areas (pillars, teams, etc): <input type="text" name="tags" id="tags"><br>
+<input type="submit" value="Submit Question">
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
