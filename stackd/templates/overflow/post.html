@@ -3,7 +3,7 @@
 {% block content %}
 Please fill out the information below before posting your question:
 
-<form method="post", action"">
+<form method="post">
 {% csrf_token %}
 Your Email: <input type="text" name="email_field" id="email_field"><br>
 Title of Question: <input type="text" name="title" id="title"><br>
