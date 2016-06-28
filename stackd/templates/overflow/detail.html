@@ -1,0 +1,12 @@
+<p><h2>{{question}}</h2></p><br><br>
+
+Responses:<br> 
+
+{% if comment_list %}
+	<li>
+	{% for comment in comment_list %}
+		Comment: {{comment.comment_text}}<br>
+		Published {{comment.pub_date}}:<br>
+	{% endfor %}
+	</li>
+{% endif %}
