@@ -1,14 +1,33 @@
 {% extends 'overflow/base.html' %}
 
 {% block content %}
-Please fill out the information below before posting your question:
-
-<form method="post">
-{% csrf_token %}
-Your Email: <input type="text" name="email_field" id="email_field"><br>
-Title of Question: <input type="text" name="title" id="title"><br>
-Detail - as much as necessary: <input type="textarea" name="detail" id="detail"><br>
-Tags - any relevant areas (pillars, teams, etc): <input type="text" name="tags" id="tags"><br>
-<input type="submit" value="Submit Question">
-</form>
+<div id="post" class="grid cf">
+	<div class="col-1-1">
+		<h2>Please fill out the information below before posting your question</h2>
+	</div>
+	<div class="col-3-4">
+		<form method="post">
+			{% csrf_token %}
+			<div class="input-wrapper">
+				<h3>Your Email: </h3>
+				<input type="text" name="email_field" id="email_field">
+			</div>
+			<div class="input-wrapper">
+				<h3>Title of Question (Be Specific)</h3>
+				<input type="text" name="title" id="title">
+			</div>
+			<div class="input-wrapper">
+				<h3>Detail - as much as necessary:</h3>
+				<input type="textarea" name="detail" id="detail">
+			</div>
+			<div class="input-wrapper">
+				<h3>Tags - any relevant areas (pillars, teams, etc):</h3>
+				<input type="text" name="tags" id="tags"><br>
+			</div>
+			<input type="submit" value="Submit Question">
+		</form>
+	</div>
+	<div class="col-1-4">
+	</div>
+</div>
 {% endblock %}
