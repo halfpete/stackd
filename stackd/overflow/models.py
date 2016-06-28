@@ -7,9 +7,9 @@ import datetime
 # Create your models here.
 
 class Question (models.Model):
-	author = models.CharField
+	author = models.CharField (max_length = 200, default = "anonymous@pandora.com")
 	question_title = models.TextField(max_length = 200)
-	question_detail = models.TextField
+	question_detail = models.TextField(max_length = 200000, default = "no detail")
 	tags = models.CharField(max_length = 200)
 	pub_date = models.DateTimeField('date published')
 	status = models.CharField(max_length = 20)
@@ -23,7 +23,7 @@ class Question (models.Model):
 class Comment (models.Model):
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
 	comment_text = models.TextField(max_length = 200000)
-	author = models.CharField
+	author = models.CharField (max_length = 200, default = "anonymous@pandora.com")
 	upvotes = models.IntegerField(default = 0)
 	downvotes = models.IntegerField(default = 0)
 	pub_date = models.DateTimeField('date published')
