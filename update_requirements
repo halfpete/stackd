@@ -15,4 +15,4 @@ pip-compile -r --upgrade requirements-dev.in
 pip-compile -r --upgrade requirements.in
 
 # finally, install the dev requirements
-pip install --upgrade -r requirements-dev.txt
+sudo pip install --upgrade -r requirements-dev.txt
