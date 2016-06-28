@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'stackd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'stackd',
         'USER': 'stackduser',
         'PASSWORD': 'pandora',
