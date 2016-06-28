@@ -17,6 +17,15 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+def detail(request, question_id):
+	question = Question.objects.get(id = question_id)
+	comment_list = question.comment_set.all().order_by('upvotes')
+	context = {
+	'question': question,
+	'comment_list': comment_list,
+	}
+	return render(request, 'overflow/detail.html', context)
+
 def add_new_question_to_database(request, title, detail, tags, email):
     q = Question(question_title=title, question_detail=detail, tags=tags, author=email, pub_date=timezone.now(),
                  status='unsolved')
