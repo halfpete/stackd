@@ -2,7 +2,7 @@
 
 
 from django.utils import timezone
-from stackd.overflow.models import Question
+from overflow.models import Question
 
 
 def add_new_question_to_database(request, title, detail, tags, email):
