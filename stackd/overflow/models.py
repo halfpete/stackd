@@ -17,7 +17,7 @@ class Question (models.Model):
 	downvotes = models.PositiveIntegerField(default = 0)
 	netvotes = models.IntegerField(default = 0)
 	def __str__(self):
-		return self.question_text
+		return self.question_title
 
 class Comment (models.Model):
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
