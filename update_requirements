@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# This script is intended to be executed from a local development environment after
+# a new dependency has been added to requirements.in or requirements-dev.in
+
+# check if pip-tools is installed
+if ! type pip-compile &> /dev/null; then
+    echo 'Update pip and installing pip-tools...'
+    pip install --upgrade pip==8.1.2
+    pip install pip-tools
+fi
+
+# update requirements.txt and requirements-dev.txt
+pip-compile -r --upgrade requirements-dev.in
+pip-compile -r --upgrade requirements.in
+
+# finally, install the dev requirements
+pip install --upgrade -r requirements-dev.txt

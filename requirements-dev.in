@@ -1,0 +1,5 @@
+# Runtime requirements
+--requirement requirements.in
+
+django-extensions
+django-nose

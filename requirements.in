@@ -1,0 +1,3 @@
+Django
+django-log-request-id==1.1.1-pandora
+psycopg2
