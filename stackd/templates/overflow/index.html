@@ -1,2 +1,16 @@
-{% extends 'overflow/base.html' %}
-Welcome to the landing page.
+{% block content %}
+
+Welcome to the landing page.<br>
+Questions: <br><br>
+
+{% if question_list %}
+	<ul>
+	{% for question in question_list %}
+		<li> <a href = "/{{question.id}}/"> {{question.question_title}} </a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p> No questions available </p>
+
+{% endif %}
+{% endblock %}
