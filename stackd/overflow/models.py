@@ -43,7 +43,7 @@ class Answer (models.Model):
 	pub_date = models.DateTimeField('date published')
 
 	def __str__(self):
-		return self.comment_text
+		return self.answer_text
 
 	def netvotes(self):
 		return self.upvotes - self.downvotes

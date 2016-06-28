@@ -1,49 +1,56 @@
-from overflow.models import Question
+from overflow.models import Comment
 
 
-def upvote(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    q.upvotes += 1
+def upvote(request, question):
+    c = Comment.objects.get(question)
+    c.upvotes += 1
 
 
-def downvote(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    q.downvotes += 1
+def downvote(request, question):
+    c = Comment.objects.get(question)
+    c.downvotes += 1
 
 
-def get_netvotes(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    return q.netvotes()
+def get_author(request, question):
+    c = Comment.objects.get(question)
+    return c.author
 
 
-def get_upvotes(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    return q.upvotes
+def get_netvotes(request, question):
+    c = Comment.objects.get(question)
+    return c.netvotes()
 
 
-def get_downvotes(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    return q.downvotes
+def get_upvotes(request, question):
+    c = Comment.objects.get(question)
+    return c.upvotes
 
 
-def get_pub_date(request, question, primary_key):
-    q = Question.objects.get(primary_key)
-    return q.pub_date
-
-def get_Question_text(request, question, primary_key):
+def get_downvotes(request, question):
+    c = Comment.objects.get(question)
+    return c.downvotes
 
 
+def get_pub_date(request, question):
+    c = Comment.objects.get(question)
+    return c.pub_date
 
-def set_pub_date(request, question, primary_key, new_pubdate):
-    q = Question.objects.get(primary_key)
+
+def get_comment_text(request, question):
+    c = Comment.objets.get(question)
+    return c.comment_text
+
+
+def set_pub_date(request, question, new_pubdate):
+    q = Comment.objects.get(question)
     q.pub_date = new_pubdate
 
 
-def set_upvotes(request, question, primary_key, new_upvotes):
-    q = Question.objects.get(primary_key)
+def set_upvotes(request, question, new_upvotes):
+    q = Comment.objects.get(question)
     q.upvotes = new_upvotes
 
 
-def set_downvotes(request, question, primary_key, new_downvotes):
-    q = Question.objects.get(primary_key)
+def set_downvotes(request, question, new_downvotes):
+    q = Comment.objects.get(question)
     q.downvotes = new_downvotes

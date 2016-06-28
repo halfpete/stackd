@@ -18,6 +18,11 @@ def downvote(request, primary_key):
     q.downvotes += 1
 
 
+def get_author(request, primary_key):
+    q = Question.objects.get(primary_key)
+    return q.author
+
+
 def get_netvotes(request, primary_key):
     q = Question.objects.get(primary_key)
     return q.netvotes()
