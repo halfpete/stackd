@@ -6,6 +6,12 @@ from .models import Question, Comment
 from django.utils import timezone
 from django.template import loader, RequestContext
 from django.db import connection
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
+from .forms import LoginForm, RegisterForm
+
+from django import forms
 
 def index(request):
     question_list = Question.objects.order_by('-pub_date')
@@ -30,7 +36,7 @@ def detail(request, question_id):
     }
 
     upvote = request.POST.get('upvote')
-    downvote = request.POST.get('downvote')
+    # downvote = request.POST.get('downvote')
     if (upvote != None):
         upvote_object(request, )
 
@@ -44,7 +50,7 @@ def post(request):
     tags = request.POST.get('tags', '')
     if (email != '' and title != '' and detail != '' and tags != ''):
         add_new_question_to_database(request, title, detail, tags, email)
-        return HttpResponseRedirect('/') 
+        return HttpResponseRedirect('/')
     return render(request, 'overflow/post.html')
 
 def add_new_question_to_database(request, title, detail, tags, email):
@@ -62,3 +68,62 @@ def upvote_object (request, target):
 
 def downvote_object (request, target):
     target.downvotes += 1
+
+
+
+def user_login(request):
+
+    # cobbled from the django tutorials
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+
+            if user.is_active:
+                login(request, user)
+
+            else:
+                return render(request, 'overflow/login.html', {'form' : None, 'error' : True})
+
+        else:
+            return render(request, 'overflow/login.html', {'form' : None, 'error' : True})
+
+    else:
+        form = LoginForm()
+
+    return HttpResponse(render(request, 'overflow/login.html', {'form' : form, 'error' : False}))
+
+
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+
+        if form.is_valid():
+            # check if the passwords match
+            if not form.cleaned_data['password'] == form.cleaned_data['confirm_password']:
+                raise forms.ValidationError("Your Password Does Not Match the Confirmation")
+                # return render(request, 'overflow/register', {'form' : form, 'error' : True})
+
+            # check if the user already exists
+            try:
+                User.objects.get(username__iexact=form.cleaned_data['username'])
+                raise forms.ValidationError("That Username already exists")
+            except User.DoesNotExist:
+                # cool, doesn't exist yet
+                pass
+
+            User.objects.create_user(first_name=form.cleaned_data['first_name'], \
+                                            last_name=form.cleaned_data['last_name'], \
+                                            username=form.cleaned_data['username'], \
+                                            email=form.cleaned_data['email'], \
+                                            password=form.cleaned_data['password'])
+
+            return HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : False}))
+        else:
+            return HttpResponse(render(request, 'overflow/register.html', {'form': None, 'error' : True}))
+    else:
+        form = RegisterForm()
+
+    return HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : False}))
