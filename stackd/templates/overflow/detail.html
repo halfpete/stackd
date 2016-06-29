@@ -25,8 +25,14 @@
 							<p>{{comment.comment_text}}</p>
 							<div class="comment-label cf">
 								<div class="comment-vote">
-									<h5 class="upvote">upvote,&nbsp;</h5>
-									<h5 class="downvote">downvote</h5>
+									<h5 class="upvote">
+										<span>thumb up</span>
+										<div class="thumb-up"></div>
+									</h5>
+									<h5 class="downvote">
+										<span>thumb down</span>
+										<div class="thumb-down"></div>
+									</h5>
 								</div>
 								<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
 							</div>
@@ -34,25 +40,36 @@
 					</div>
 				{% endfor %}
 			{% else %}
-				<div class="comment">
-					<p>no comments</p>
-				</div>
+				<!-- <div class="comment">
+					<div class="comment-body">
+						<p>no comments</p>
+					</div>
+				</div> -->
 			{% endif %}
 			<div class="comment">
-				<form method="post", action"">
-					{% csrf_token %}
-					<div class="input-wrapper">
-						<h5>Email</h5>
-						<input type="email" name="email_field" id="email_field">
-					</div>
-					<div class="input-wrapper">
-						<h5>Add a Comment</h5>
-						<textarea type="text" name="comment" id="comment"></textarea>
-					</div>
-					<input type="submit" value="Submit Comment">
-				</form>
+				<div class="comment-body">
+					<h4>Post a Comment</h4>
+					<form method="post", action"">
+						{% csrf_token %}
+						<div class="input-wrapper">
+							<h5>Email</h5>
+							<input type="email" name="email_field" id="email_field">
+						</div>
+						<div class="input-wrapper">
+							<h5>Add a Comment</h5>
+							<textarea type="text" name="comment" id="comment"></textarea>
+						</div>
+						<input type="submit" value="Submit Comment">
+					</form>
+				</div>
 			</div>
 		</div>
+	</div>
+	<div id="answers-header" class="col-1-1">
+		<h2>Answers</h2>
+	</div>
+	<div id="answers-body" class="col-2-3">
+		
 	</div>
 </div>
 {% endblock %}
