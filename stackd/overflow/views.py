@@ -2,9 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
-from controllers.comments import add_comment_to_question
+from controllers.answer_comments import add_comment_to_answer
+from controllers.question_comments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
-from .models import Question, Comment, Answer
+from .models import Question, Answer_Comment, Question_Comment, Answer
 from django.utils import timezone
 from django.template import loader, RequestContext
 from django.db import connection
@@ -26,7 +27,7 @@ def detail(request, question_id):
 
     if email != '' and new_comment != '':
         add_comment_to_question(request, question, new_comment, email)
-    comment_list = question.comment_set.order_by('-pub_date')
+    comment_list = question.question_comment_set.order_by('-pub_date')
     context = {
         'question': question,
         'comment_list': comment_list,

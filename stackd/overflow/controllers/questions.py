@@ -1,5 +1,6 @@
 from django.utils import timezone
 from overflow.models import Question
+from .tag import get_name
 
 
 def add_new_question_to_database(request, title, detail, tags, email):
