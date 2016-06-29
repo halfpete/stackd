@@ -626,9 +626,9 @@ h5, h6 {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 700;
 }
-p {
+p, span {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 /**
@@ -694,9 +694,66 @@ header nav a:hover {
  * 5.0 Content
  */
 
-#page {
-
+/*home page*/
+#home {
+    padding-bottom: 100px;
 }
+#question-list {
+    border-top: 1px solid #ddd;
+}
+.question {
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.question-score {
+    width: 60px;
+    float: left;
+    text-align: center;
+}
+.question-score h4 {
+    margin: 0;
+    line-height: 20px;
+}
+.question-body {
+    margin-left: 60px;
+}
+.question a,
+.question a:link {
+    text-decoration: none;
+    color: #07C;
+}
+.question a:visited {
+    color: #005999;
+}
+.question a:hover {
+    color: #3af;
+}
+.question h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+    line-height: 20px;
+}
+.question p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 36px;
+}
+.question-label {
+    padding-top: 10px;
+    text-align: right;
+}
+.question-label h5 {
+    font-size: 10px;
+    color: #aaa;
+    margin: 0;
+    font-weight: 400;
+}
+/*end home page*/
 
 /*post*/
 #post form {
@@ -734,7 +791,7 @@ header nav a:hover {
 
 /*detail*/
 #detail-header {
-    padding: 5px 0;
+    padding: 25px 0 5px;
     border-bottom: 1px solid #e4e6e8;
     margin-bottom: 1em;
 }
@@ -752,15 +809,97 @@ header nav a:hover {
     font-size: 12px;
     color: #777;
     text-align: right;
+    margin: 0;
 }
 #detail-labels {
+    padding-bottom: 20px;
     border-bottom: 1px solid #ddd;
 }
 #detail-question {
-    font-size: 14px;
+    padding: 20px;
+    font-size: 16px;
 }
 #comments {
     padding-left: 20px;
+}
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+.comment-score {
+    float: left;
+    width: 40px;
+    text-align: center;
+}
+.comment-score h4 {
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px;
+    color: #aaa;
+}
+.comment-body {
+    margin-left: 40px;
+}
+.comment p {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+}
+.comment-label {
+    padding-top: 5px;
+}
+.comment-vote {
+    float: left;
+}
+.comment-vote h5 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 10px;
+    color: #777;
+    float: left;
+    cursor: pointer;
+}
+.comment-vote h5:hover {
+    color: #555;
+}
+.comment-label h3 {
+    float: right;
+    font-size: 10px;
+    color: #777;
+    margin: 0;
+}
+.comment form {
+    margin-left: 40px;
+    text-align: right;
+}
+.comment form .input-wrapper {
+    margin-bottom: 10px;
+}
+.comment form h5 {
+    font-weight: 400;
+    margin: 0;
+    font-size: 12px;
+    color: #777;
+    text-align: left;
+}
+.comment form input, 
+.comment form textarea {
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 100%;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+.comment form input[type="submit"] {
+    width: auto;
+    background-color: #0095ff;
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 #66bfff;
+    transition: background-color .3s;
+    display: inline-block;
 }
 /*end detail*/
 

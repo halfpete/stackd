@@ -1,18 +1,31 @@
 {% extends 'overflow/base.html' %}
 
 {% block content %}
-
-Welcome to the landing page.<br>
-Questions: <br><br>
-
-{% if question_list %}
-	<ul>
-	{% for question in question_list %}
-		<li> <a href = "{{question.id}}/"> {{question.question_title}} </a></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p> No questions available </p>
-
-{% endif %}
+<div id="home" class="grid cf">
+	<h1>Welcome to the landing page</h1>
+	<h2>All Questions</h2>
+	<div id="question-list" class="col-2-3">
+		{% if question_list %}
+			{% for question in question_list %}
+				<div class="question cf">
+					<div class="question-score">
+						<h4>{{question.netvotes}}</h4>
+					</div>
+					<div class="question-body">
+						<h2>
+							<a href = "{{question.id}}/">
+							{{question.question_title}}</a>
+						</h2>
+						<p>{{question.question_detail}}</p>
+						<div class="question-label">
+							<h5>posted by {{question.author}} on {{question.pub_date}}</h5>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p> No questions available </p>
+		{% endif %}
+	</div>
+</div>
 {% endblock %}

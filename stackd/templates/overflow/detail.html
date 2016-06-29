@@ -5,7 +5,7 @@
 	<div id="detail-header" class="col-1-1">
 		<h2>{{question}}</h2>
 	</div>
-	<div id="detail-body" class="col-3-4">
+	<div id="detail-body" class="col-2-3">
 		<div id="detail-question">
 			{{question.question_detail}}
 		</div>
@@ -15,22 +15,43 @@
 		<div id="comments">
 			{% if comment_list %}
 				{% for comment in comment_list %}
-					<li> Comment: {{comment.comment_text}}<br></li>
-					Published: {{comment.pub_date}} by {{comment.author}}<br>
-					Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
+					<div class="comment cf">
+						<div class="comment-score">
+							{% if comment.netvotes != 0 %}
+								<h4>{{comment.netvotes}}</h4>
+							{% endif %}
+						</div>
+						<div class="comment-body">
+							<p>{{comment.comment_text}}</p>
+							<div class="comment-label cf">
+								<div class="comment-vote">
+									<h5 class="upvote">upvote,&nbsp;</h5>
+									<h5 class="downvote">downvote</h5>
+								</div>
+								<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
+							</div>
+						</div>
+					</div>
 				{% endfor %}
 			{% else %}
 				<div class="comment">
 					<p>no comments</p>
 				</div>
 			{% endif %}
-			Add a Comment
-			<form method="post", action"">
-				{% csrf_token %}
-				Your Email: <input type="text" name="email_field" id="email_field"><br>
-				Comment: <input type="text" name="comment" id="comment"><br>
-				<input type="submit" value="Submit Comment">
-			</form>
+			<div class="comment">
+				<form method="post", action"">
+					{% csrf_token %}
+					<div class="input-wrapper">
+						<h5>Email</h5>
+						<input type="email" name="email_field" id="email_field">
+					</div>
+					<div class="input-wrapper">
+						<h5>Add a Comment</h5>
+						<textarea type="text" name="comment" id="comment"></textarea>
+					</div>
+					<input type="submit" value="Submit Comment">
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
