@@ -24,7 +24,7 @@ class Question (models.Model):
     pub_date = models.DateTimeField('date published')
     status = models.CharField(max_length = MAX_STAT_LENGTH)
     upvotes = models.PositiveIntegerField (default = 0)
-    userID = models.PositiveIntegerField(default = 0)
+    #userID = models.PositiveIntegerField(default = 0)
     downvotes = models.PositiveIntegerField(default = 0)
     def netvotes(self):
         return self.upvotes-self.downvotes
