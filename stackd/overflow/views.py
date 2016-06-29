@@ -40,13 +40,8 @@ def detail(request, question_id):
     }
 
     upvote = request.POST.get('upvote')
-<<<<<<< HEAD
-    # downvote = request.POST.get('downvote')
-    if (upvote != None):
-=======
     downvote = request.POST.get('downvote')
     if upvote != None:
->>>>>>> d44a7902ac108174dd9b4cc1830d3f7014976b0c
         upvote_object(request, )
 
     return render(request, 'overflow/detail.html', context)
@@ -88,7 +83,6 @@ def post(request):
 def upvote_object(request, target):
     target.upvotes += 1
 
-<<<<<<< HEAD
 def downvote_object (request, target):
     target.downvotes += 1
 
