@@ -67,34 +67,11 @@ def post(request):
     return render(request, 'overflow/post.html')
 
 
-# def add_new_question_to_database(request, title, detail, tags, email):
-#     q = Question(author=email, question_title=title, question_detail=detail, tags=tags, pub_date=timezone.now(),
-#                  status='unsolved')
-#     q.save()
-#     print "question added"
-#
-#
-# def add_comment_to_question(request, question, text, email):
-#     c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
-#     c.save()
-#
-#
-# def add_comment_to_answer(request, answer, text, email):
-#     c = Comment(answer=answer, comment_text=text, author=email, pub_date=timezone.now())
-#     c.save()
-#
-#
-# def add_answer_to_question(request, question, text, email):
-#     a = Answer(question=question, answer_text=text, author=email, pub_date=timezone.now())
-#     a.save()
-
-
 def upvote_object(request, target):
     target.upvotes += 1
 
 def downvote_object (request, target):
     target.downvotes += 1
-
 
 
 def user_login(request):
