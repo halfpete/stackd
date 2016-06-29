@@ -22,6 +22,8 @@ register_errors = ["Indicates Successful Login, never reached", "Your password a
                    "There was an error in the form data"]
 
 def index(request):
+    if not request.user:
+        return HttpResponseRedirect('overflow/login')
     question_list = Question.objects.order_by('-pub_date')
     template = loader.get_template('overflow/index.html')
     context = {
