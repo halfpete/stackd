@@ -99,6 +99,7 @@ def downvote_object (request, target):
 
 def user_logout(request):
     log_user_out(request)
+    return HttpResponseRedirect('/')
 
 def user_login(request):
 
