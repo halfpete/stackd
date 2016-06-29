@@ -12,7 +12,7 @@ def set_name(request, question, new_name):
 
 
 def add_tags(request, question, *tag_names):
-    q = Question.objects.get(question.id)
+    q = Question.objects.get(question.pk)
     for tag_name in tag_names:
         q.tags.append(tag_name + ",")
         t = Tag(question=question, name=tag_name)
