@@ -32,11 +32,11 @@ def index(request):
 
 def detail(request, question_id):
    question = Question.objects.get(id=question_id)
-   email = request.POST.get('email_field', '')
+   username = request.user.username
    new_comment = request.POST.get('comment', '')
 
-   if email != '' and new_comment != '':
-       add_comment_to_question(request, question, new_comment, email)
+   if username != '' and new_comment != '':
+       add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
    answer = question.answer_set.order_by('upvotes')
    context = {
@@ -45,11 +45,10 @@ def detail(request, question_id):
        'answer': answer
    }
 
-   answer_email = request.POST.get('answer_email', '')
    answer_text = request.POST.get('answer_text', '')
-   if answer_email != '' and answer_text != '':
+   if username != '' and answer_text != '':
        print "added answer to question"
-       add_answer_to_question(request, question, answer_text, answer_email)
+       add_answer_to_question(request, question, answer_text, username)
 
    # upvote = request.POST.get('upvote')
    # downvote = request.POST.get('downvote')
@@ -59,13 +58,13 @@ def detail(request, question_id):
 
 def post(request):
     # email = request.POST.get('email_field', '')
-    email = request.user.email
+    username = request.user.username
     title = request.POST.get('title', '')
     detail = request.POST.get('detail', '')
     tags = request.POST.get('tags', '')
     userID = request.user.pk
-    if email != '' and title != '' and detail != '' and tags != '':
-        add_new_question_to_database(request, title, detail, tags, email, userID)
+    if username != '' and title != '' and detail != '' and tags != '':
+        add_new_question_to_database(request, title, detail, tags, username, userID)
         return HttpResponseRedirect('/')
     return render(request, 'overflow/post.html')
 

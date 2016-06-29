@@ -3,8 +3,8 @@ from overflow.models import Question
 from .tag import get_name
 
 
-def add_new_question_to_database(request, title, detail, tags, email, userID):
-    q = Question(question_title=title, question_detail=detail, tags=tags, author=email, pub_date=timezone.now(),
+def add_new_question_to_database(request, title, detail, tags, username, userID):
+    q = Question(question_title=title, question_detail=detail, tags=tags, author=username, pub_date=timezone.now(),
                  status='unsolved', userID=userID)
     q.save()
 
