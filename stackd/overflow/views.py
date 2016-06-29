@@ -143,6 +143,3 @@ def register(request):
         form = RegisterForm()
 
     return HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : False}))
-
-def downvote_object(request, target):
-    target.downvotes += 1
