@@ -38,15 +38,16 @@ class Tag(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     answer_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
+    userID = models.PositiveIntegerField(default = 0)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
 
     def __str__(self):
-        return self.comment_text
+        return self.answer_text
 
     def netvotes(self):
         return self.upvotes - self.downvotes
@@ -68,13 +69,14 @@ class AnswerComment(models.Model):
 
 
 class Comment(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     comment_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
     userID = models.PositiveIntegerField(default = 0)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
+    # is_answer_comment = models.BooleanField(default=False)
 
     def __str__(self):
         return self.comment_text

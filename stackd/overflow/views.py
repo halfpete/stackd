@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 # from controllers.answer_comments import add_comment_to_answer
 from controllers.answers import add_answer_to_question
-from controllers.answer_comments import add_comment_to_answer
-from controllers.question_comments import add_comment_to_question
+from controllers.answercomments import add_comment_to_answer
+from controllers.questioncomments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
 from controllers.register import check_and_register_user
 from controllers.login import log_user_in, log_user_out
@@ -39,13 +39,13 @@ def detail(request, question_id):
    if username != '' and new_comment != '':
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
-   answer = question.answer_set.order_by('upvotes')
-   # answer_comment_list = answer.answercomment_set.order_by('upvotes')
+   answer_list = question.answer_set.order_by('upvotes')
+   # AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
    context = {
        'question': question,
        'comment_list': comment_list,
-       'answer': answer,
-       # 'answer_comment_list': answer_comment_list
+       'answer_list': answer_list
+       # 'AnswerComment_list': AnswerComment_list
    }
 
    answer_text = request.POST.get('answer_text', '')
