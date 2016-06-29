@@ -15,9 +15,16 @@
 		<div id="comments">
 			{% if comment_list %}
 				{% for comment in comment_list %}
-					<li> Comment: {{comment.comment_text}}<br></li>
-					Published: {{comment.pub_date}} by {{comment.author}}<br>
-					Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
+					<div class="comment cf">
+						<div class="comment-score">
+							<h4>{{comment.netvotes}}</h4>
+						</div>
+						<p>{{comment.comment_text}}</p>
+						<div class="comment-label">
+							<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
+						</div>
+						 ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
+					</div>
 				{% endfor %}
 			{% else %}
 				<div class="comment">
@@ -27,7 +34,7 @@
 			Add a Comment
 			<form method="post", action"">
 				{% csrf_token %}
-				Your Email: <input type="text" name="email_field" id="email_field"><br>
+				Your Email: <input type="email" name="email_field" id="email_field"><br>
 				Comment: <input type="text" name="comment" id="comment"><br>
 				<input type="submit" value="Submit Comment">
 			</form>

@@ -628,7 +628,7 @@ h5, h6 {
 }
 p {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 /**
@@ -761,6 +761,17 @@ header nav a:hover {
 }
 #comments {
     padding-left: 20px;
+}
+.comment {
+    border-bottom: 1px solid #ddd;
+}
+.comment p {
+    font-size: 12px;
+}
+.comment-label h3 {
+    float: right;
+    font-size: 10px;
+    color: #777;
 }
 /*end detail*/
 
