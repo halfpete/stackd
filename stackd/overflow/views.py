@@ -21,13 +21,21 @@ def detail(request, question_id):
     question = Question.objects.get(id = question_id)
     email = request.POST.get('email_field', '')
     new_comment = request.POST.get('comment', '')
+
     if (email != '' and new_comment != ''):
         add_comment_to_question(request, question, new_comment, email)
-    comment_list = question.comment_set.all().order_by('-upvotes')
+    comment_list = sorted(question.comment_set.all(), key=lambda a: a.netvotes)
     context = {
     'question': question,
     'comment_list': comment_list,
     }
+
+    upvote = request.POST.get('upvote')
+    downvote = request.POST.get('downvote')
+    if (upvote != None):
+        upvote_object(request, )
+
+
     return render(request, 'overflow/detail.html', context)
 
 def post(request):
@@ -50,3 +58,8 @@ def add_comment_to_question(request, question, text, email):
     c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
     c.save()
 
+def upvote_object (request, target):
+    target.upvotes += 1
+
+def downvote_object (request, target):
+    target.downvotes += 1
