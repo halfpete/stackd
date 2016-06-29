@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from controllers.answer_comments import add_comment_to_answer
+from controllers.answers import add_answer_to_question
 from controllers.question_comments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
 from .models import Question, AnswerComment, Comment, Answer
@@ -27,22 +28,31 @@ def index(request):
 
 
 def detail(request, question_id):
-    question = Question.objects.get(id=question_id)
-    email = request.POST.get('email_field', '')
-    new_comment = request.POST.get('comment', '')
+   question = Question.objects.get(id=question_id)
+   email = request.POST.get('email_field', '')
+   new_comment = request.POST.get('comment', '')
 
-    if email != '' and new_comment != '':
-        add_comment_to_question(request, question, new_comment, email)
-    comment_list = question.comment_set.order_by('-pub_date')
-    context = {
-        'question': question,
-        'comment_list': comment_list,
-    }
+   if email != '' and new_comment != '':
+       add_comment_to_question(request, question, new_comment, email)
+   comment_list = question.comment_set.order_by('-pub_date')
+   answer = question.answer_set.order_by('upvotes')
+   context = {
+       'question': question,
+       'comment_list': comment_list,
+       'answer': answer
+   }
 
-    upvote = request.POST.get('upvote')
-    downvote = request.POST.get('downvote')
+   answer_email = request.POST.get('answer_email', '')
+   answer_text = request.POST.get('answer_text', '')
+   if answer_email != '' and answer_text != '':
+       print "added answer to question"
+       add_answer_to_question(request, question, answer_text, answer_email)
 
-    return render(request, 'overflow/detail.html', context)
+
+   upvote = request.POST.get('upvote')
+   downvote = request.POST.get('downvote')
+
+   return render(request, 'overflow/detail.html', context)
 
 
 def post(request):
