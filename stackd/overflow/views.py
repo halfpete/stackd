@@ -107,13 +107,12 @@ def user_login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
 
-        error = log_user_in(form, request)
+        log_user_in(form, request)
 
-        return render(request, 'overflow/login.html', {'form' : form, 'error' : error})
+        return HttpResponseRedirect('/')#render(request, 'overflow/login.html', {'form' : form, 'error' : error})
     else:
         form = LoginForm()
-
-    return HttpResponse(render(request, 'overflow/login.html', {'form' : form, 'error' : False}))
+        return HttpResponse(render(request, 'overflow/login.html', {'form' : form, 'error' : False}))
 
 
 
@@ -121,9 +120,9 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
-        error = check_and_register_user(form)
+        check_and_register_user(form)
 
-        return HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : error, 'error_msg' : register_errors[error]}))
+        return HttpResponseRedirect('overflow/login.html')#HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : error, 'error_msg' : register_errors[error]}))
     else:
         form = RegisterForm()
 
