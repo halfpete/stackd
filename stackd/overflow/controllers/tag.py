@@ -18,3 +18,13 @@ def add_tags(request, question, *tag_names):
         t = Tag(question=question, name=tag_name)
         t.save()
 
+
+def remove_tags(request, question, *tag_names):
+    q = Question.objects.get(question.pk)
+    new_tags = ""
+    current_tags = q.tags.split(",")
+    for current_tag in current_tags:
+        if tag_names.contains(current_tag) is False:
+            new_tags.append(current_tag + ",")
+    q.tags = new_tags
+
