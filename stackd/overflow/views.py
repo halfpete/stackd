@@ -23,7 +23,7 @@ def detail(request, question_id):
 
     if (email != '' and new_comment != ''):
         add_comment_to_question(request, question, new_comment, email)
-    comment_list = sorted(question.comment_set.all(), key=lambda a: a.netvotes)
+    comment_list = question.comment_set.order_by('-pub_date')
     context = {
     'question': question,
     'comment_list': comment_list,
