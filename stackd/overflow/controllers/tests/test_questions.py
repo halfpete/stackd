@@ -1,10 +1,6 @@
 from django.test import TestCase
 from overflow.models import Question
-from overflow.controllers.questions import upvote_question, downvote_question
-
-class DummyTest(TestCase):
-    def test_dummy(self):
-        self.assertEquals(1, 1)
+from overflow.controllers.questions import upvote, downvote
 
 
 class QuestionTestCase(TestCase):
@@ -15,24 +11,24 @@ class QuestionTestCase(TestCase):
 
     def test_upvote_question(self):
         question = Question()
-        upvote_question(question)
+        upvote(question)
         self.assertEqual(question.upvotes, 1)
 
     def test_downvote_question(self):
         question = Question()
-        downvote_question(question)
+        downvote(question)
         self.assertEqual(question.downvotes, 1)
 
     def test_netvotes_question(self):
         question = Question()
-        downvote_question(question)
-        downvote_question(question)
-        downvote_question(question)
+        downvote(question)
+        downvote(question)
+        downvote(question)
         self.assertEqual(question.netvotes(), -3)
-        upvote_question(question)
-        upvote_question(question)
-        upvote_question(question)
-        upvote_question(question)
+        upvote(question)
+        upvote(question)
+        upvote(question)
+        upvote(question)
         self.assertEqual(question.netvotes(), 1)
 
 
