@@ -15,7 +15,8 @@ def add_tags(request, question, *tag_names):
     q = Question.objects.get(question.pk)
     for tag_name in tag_names:
         q.tags.append(tag_name + ",")
-        t = Tag(question=question, name=tag_name)
+        t = Tag(name=tag_name)
+        # if Tag.objects
         t.save()
 
 
@@ -27,4 +28,3 @@ def remove_tags(request, question, *tag_names):
         if tag_names.contains(current_tag) is False:
             new_tags.append(current_tag + ",")
     q.tags = new_tags
-

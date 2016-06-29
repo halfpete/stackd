@@ -33,7 +33,6 @@ class Question(models.Model):
 
 
 class Tag(models.Model):
-    question = models.ForeignKey(Question, default=None)
     name = models.CharField(max_length=50)
 
 
@@ -52,7 +51,7 @@ class Answer(models.Model):
         return self.upvotes - self.downvotes
 
 
-class Answer_Comment(models.Model):
+class AnswerComment(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
     comment_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
@@ -67,7 +66,7 @@ class Answer_Comment(models.Model):
         return self.upvotes - self.downvotes
 
 
-class Question_Comment(models.Model):
+class QuestionComment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     comment_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")

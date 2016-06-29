@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from controllers.answer_comments import add_comment_to_answer
 from controllers.question_comments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
-from .models import Question, Answer_Comment, Question_Comment, Answer
+from .models import Question, AnswerComment, QuestionComment, Answer
 from django.utils import timezone
 from django.template import loader, RequestContext
 from django.db import connection
