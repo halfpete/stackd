@@ -66,7 +66,7 @@ class AnswerComment(models.Model):
         return self.upvotes - self.downvotes
 
 
-class QuestionComment(models.Model):
+class Comment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     comment_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
