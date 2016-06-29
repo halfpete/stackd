@@ -7,7 +7,6 @@ from django.utils import timezone
 from django.template import loader, RequestContext
 from django.db import connection
 
-
 def index(request):
     question_list = Question.objects.order_by('-pub_date')
     template = loader.get_template('overflow/index.html')

@@ -1,25 +1,38 @@
 {% extends 'overflow/base.html' %}
 
 {% block content %}
-<p><h2>{{question}}</h2></p>
-Posted by {{question.author}} on {{question.pub_date}}<br><br><br><br>
+<div id="detail" class="grid cf">
+	<div id="detail-header" class="col-1-1">
+		<h2>{{question}}</h2>
+	</div>
+	<div id="detail-body" class="col-3-4">
+		<div id="detail-question">
+			{{question.question_detail}}
+		</div>
+		<div id="detail-labels">
+			<h3>posted by {{question.author}} on {{question.pub_date}}</h3>
+		</div>
+		<div id="comments">
+			{% if comment_list %}
+				{% for comment in comment_list %}
+					<li> Comment: {{comment.comment_text}}<br></li>
+					Published: {{comment.pub_date}} by {{comment.author}}<br>
+					Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
+				{% endfor %}
+			{% else %}
+				<div class="comment">
+					<p>no comments</p>
+				</div>
+			{% endif %}
+			Add a Comment
+			<form method="post", action"">
+				{% csrf_token %}
+				Your Email: <input type="text" name="email_field" id="email_field"><br>
+				Comment: <input type="text" name="comment" id="comment"><br>
+				<input type="submit" value="Submit Comment">
+			</form>
+		</div>
+	</div>
 
-Leave a Comment:
-<form method="post", action"">
- {% csrf_token %}
- Your Email: <input type="text" name="email_field" id="email_field"><br>
- Comment: <input type="text" name="comment" id="comment"><br>
-<input type="submit" value="Submit Comment">
-</form><br>
-
-Responses:<br> <br>
-
-{% if comment_list %}
-	
-	{% for comment in comment_list %}
-		<li> Comment: {{comment.comment_text}}<br></li>
-		Published: {{comment.pub_date}} by {{comment.author}}<br>
-		Score: {{comment.netvotes}} ({{comment.upvotes}} Upvotes, {{comment.downvotes}} Downvotes)<br><br>
-	{% endfor %}
-{% endif %}
+</div>
 {% endblock %}
