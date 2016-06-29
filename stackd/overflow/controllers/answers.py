@@ -1,4 +1,11 @@
 from overflow.models import Answer
+from django.utils import timezone
+
+
+def add_answer_to_question(request, question, text, email):
+    a = Answer(question=question, answer_text=text, author=email, pub_date=timezone.now())
+    a.save()
+    print "answer added to question"
 
 
 def upvote(request, question):
