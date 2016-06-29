@@ -41,8 +41,6 @@ def detail(request, question_id):
 
     upvote = request.POST.get('upvote')
     downvote = request.POST.get('downvote')
-    if upvote != None:
-        upvote_object(request, )
 
     return render(request, 'overflow/detail.html', context)
 
@@ -52,8 +50,9 @@ def post(request):
     title = request.POST.get('title', '')
     detail = request.POST.get('detail', '')
     tags = request.POST.get('tags', '')
+    userID = request.user.pk
     if email != '' and title != '' and detail != '' and tags != '':
-        add_new_question_to_database(request, title, detail, tags, email)
+        add_new_question_to_database(request, title, detail, tags, email, userID)
         return HttpResponseRedirect('/')
     return render(request, 'overflow/post.html')
 
@@ -97,7 +96,7 @@ def user_login(request):
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
 
-            if user.is_active:
+            if  user and user.is_active:
                 login(request, user)
 
             else:

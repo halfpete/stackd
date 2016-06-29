@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from django.contrib.auth.base_user import AbstractBaseUser#, BaseUserManager
-from django.contrib.auth.models import UserManager, PermissionsMixin
+# from django.contrib.auth.base_user import AbstractBaseUser#, BaseUserManager
+# from django.contrib.auth.models import UserManager, PermissionsMixin
 
 MAX_USERNAME_LENGTH = 60
 MAX_AUTHOR_LENGTH = 200
@@ -23,7 +23,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     status = models.CharField(max_length=MAX_STAT_LENGTH)
     upvotes = models.PositiveIntegerField(default=0)
-    # userID = models.PositiveIntegerField(default = 0)
+    userID = models.PositiveIntegerField(default = 0)
     downvotes = models.PositiveIntegerField(default=0)
 
     def netvotes(self):
