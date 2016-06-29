@@ -20,7 +20,7 @@ class Question(models.Model):
     question_title = models.TextField(max_length=MAX_TITLE_LENGTH)
     question_detail = models.TextField(max_length=MAX_RESP_LENGTH, default="no detail")
     tags = models.CharField(max_length=MAX_TAG_LENGTH)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
     status = models.CharField(max_length=MAX_STAT_LENGTH)
     upvotes = models.PositiveIntegerField(default=0)
     userID = models.PositiveIntegerField(default = 0)
@@ -43,7 +43,7 @@ class Answer(models.Model):
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
 
     def __str__(self):
         return self.comment_text
@@ -58,7 +58,7 @@ class AnswerComment(models.Model):
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
 
     def __str__(self):
         return self.comment_text
@@ -74,7 +74,7 @@ class Comment(models.Model):
     userID = models.PositiveIntegerField(default = 0)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
 
     def __str__(self):
         return self.comment_text
