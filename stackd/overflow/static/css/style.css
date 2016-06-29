@@ -694,9 +694,63 @@ header nav a:hover {
  * 5.0 Content
  */
 
-#page {
-
+/*home page*/
+#question-list {
+    border-top: 1px solid #ddd;
 }
+.question {
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.question-score {
+    width: 60px;
+    float: left;
+    text-align: center;
+}
+.question-score h4 {
+    margin: 0;
+    line-height: 20px;
+}
+.question-body {
+    margin-left: 60px;
+}
+.question a,
+.question a:link {
+    text-decoration: none;
+    color: #07C;
+}
+.question a:visited {
+    color: #005999;
+}
+.question a:hover {
+    color: #3af;
+}
+.question h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+    line-height: 20px;
+}
+.question p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 36px;
+}
+.question-label {
+    padding-top: 10px;
+    text-align: right;
+}
+.question-label h5 {
+    font-size: 10px;
+    color: #aaa;
+    margin: 0;
+    font-weight: 400;
+}
+/*end home page*/
 
 /*post*/
 #post form {
