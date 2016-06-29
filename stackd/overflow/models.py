@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from django.contrib.auth.base_user import AbstractBaseUser
+# from django.contrib.auth.base_user import AbstractBaseUser#, BaseUserManager
+# from django.contrib.auth.models import UserManager, PermissionsMixin
 
 MAX_USERNAME_LENGTH = 60
 MAX_AUTHOR_LENGTH = 200
@@ -22,7 +23,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
     status = models.CharField(max_length=MAX_STAT_LENGTH)
     upvotes = models.PositiveIntegerField(default=0)
-    # userID = models.PositiveIntegerField(default = 0)
+    userID = models.PositiveIntegerField(default = 0)
     downvotes = models.PositiveIntegerField(default=0)
 
     def netvotes(self):
@@ -70,6 +71,7 @@ class Comment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     comment_text = models.TextField(max_length=MAX_RESP_LENGTH)
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
+    userID = models.PositiveIntegerField(default = 0)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     pub_date = models.DateTimeField('date published', null=True, default='1950-01-01')
@@ -83,29 +85,31 @@ class Comment(models.Model):
 
 # object.pk for primary key
 
-# class UserManager(BaseManager)
+# class CustomUserManager(BaseUserManager):,
 
 
-class User(AbstractBaseUser):
-    # XXX: Possible to just make this the email?
-    username = models.CharField(max_length=MAX_USERNAME_LENGTH, unique=True)
+# class User(AbstractBaseUser, PermissionsMixin):
+    # # XXX: Possible to just make this the email?
+    # username = models.CharField(max_length=MAX_USERNAME_LENGTH, unique=True)
 
-    USERNAME_FIELD = 'username'
+    # USERNAME_FIELD = 'username'
 
-    # Keep some unique information about the user
-    # XXX: Do we want to require all of this information?
-    email = models.CharField(max_length=MAX_USERNAME_LENGTH, unique=True)
-    first_name = models.CharField(max_length=MAX_USERNAME_LENGTH)
-    last_name = models.CharField(max_length=MAX_USERNAME_LENGTH)
+    # # Keep some unique information about the user
+    # # XXX: Do we want to require all of this information?
+    # email = models.EmailField(max_length=MAX_USERNAME_LENGTH, unique=True)
+    # first_name = models.CharField(max_length=MAX_USERNAME_LENGTH)
+    # last_name = models.CharField(max_length=MAX_USERNAME_LENGTH)
 
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
+    # REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
 
-    def is_active(self):
-        # XXX: Always returns true lol
-        return True
+    # objects = UserManager()
 
-    def get_full_name(self):
-        return "%s %s" % (self.first_name, self.last_name)
+    # def is_active(self):
+        # # XXX: Always returns true lol
+        # return True
 
-    def set_short_name(self):
-        return self.first_name
+    # def get_full_name(self):
+        # return "%s %s" % (self.first_name, self.last_name)
+
+    # def set_short_name(self):
+        # return self.first_name
