@@ -5,6 +5,9 @@ import datetime
 
 
 # Create your models here.
+class Tag (models.Model):
+	name = models.CharField (max_length = 50, default = "empty-tag")
+
 
 class Question (models.Model):
 	author = models.CharField (max_length = 200, default = "anonymous@pandora.com")
