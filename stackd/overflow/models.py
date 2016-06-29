@@ -13,9 +13,6 @@ MAX_STAT_LENGTH = 20
 
 
 # Create your models here.
-class Tag(models.Model):
-    name = models.CharField(max_length=50, default="empty-tag")
-
 
 class Question(models.Model):
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, default="anonymous@pandora.com")
@@ -33,6 +30,11 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_title
+
+
+class Tag(models.Model):
+    question = models.ForeignKey(Question, default=None)
+    name = models.CharField(max_length=50)
 
 
 class Answer(models.Model):
