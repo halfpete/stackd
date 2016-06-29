@@ -2,8 +2,8 @@ from overflow.models import Comment
 from django.utils import timezone
 
 
-def add_comment_to_question(request, question, text, email):
-    c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
+def add_comment_to_question(request, question, text, userID):
+    c = Comment(question=question, comment_text=text, author=userID, pub_date=timezone.now())
     c.save()
     print "comment added to question"
 
