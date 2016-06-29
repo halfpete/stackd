@@ -820,7 +820,7 @@ header nav a:hover {
     font-size: 16px;
 }
 #comments {
-    padding-left: 20px;
+    padding-left: 60px;
 }
 .comment {
     border-bottom: 1px solid #eee;
@@ -862,6 +862,22 @@ header nav a:hover {
 .comment-vote h5:hover {
     color: #555;
 }
+.comment .thumb-up,
+.comment .thumb-down {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: .5;
+}
+.comment .thumb-up {
+    background-image: url(../img/thumb_up.png);
+}
+.comment .thumb-down {
+    background-image: url(../img/thumb_down.png);
+}
 .comment-label h3 {
     float: right;
     font-size: 10px;
@@ -869,7 +885,6 @@ header nav a:hover {
     margin: 0;
 }
 .comment form {
-    margin-left: 40px;
     text-align: right;
 }
 .comment form .input-wrapper {
