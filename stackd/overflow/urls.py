@@ -13,4 +13,6 @@ urlpatterns = [
     url(r'^(?P<comment_id>[0-9]+)/td$', views.thumbdown_comment, name='tdc'),
     url(r'^(?P<question_id>[0-9]+)/q/tu$', views.thumbup_question, name='tuq'),
     url(r'^(?P<question_id>[0-9]+)/q/td$', views.thumbdown_question, name='tdq'),
+    url(r'^(?P<answer_id>[0-9]+)/a/tu$', views.thumbup_answer, name='tua'),
+    url(r'^(?P<answer_id>[0-9]+)/a/td$', views.thumbdown_answer, name='tda'),
 ]

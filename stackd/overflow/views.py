@@ -59,6 +59,20 @@ def thumbdown_comment(request, comment_id):
     return HttpResponseRedirect('/%s/' %(question))
 
 
+def thumbup_answer(request, answer_id):
+    answer = Answer.objects.get(id = answer_id)
+    upvote_object(request, answer)
+    answer.save()
+    question = answer.question.id
+    return HttpResponseRedirect('/%s/' %(question))
+
+def thumbdown_answer(request, answer_id):
+    answer = Answer.objects.get(id = answer_id)
+    downvote_object(request, answer)
+    answer.save()
+    question = answer.question.id
+    return HttpResponseRedirect('/%s/' %(question))
+
 def detail(request, question_id):
    question = Question.objects.get(id=question_id)
    username = request.user.username
