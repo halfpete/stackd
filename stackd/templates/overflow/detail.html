@@ -67,10 +67,10 @@
 			{% if user.is_authenticated %}
 				<div class="comment">
 					<div class="comment-body">
-						<div id="add-a-question-comment">Add a Comment</div>
 						<form method="post", action"">
 							{% csrf_token %}
 							<div class="input-wrapper">
+								<h5>Add a comment</h5>
 								<textarea type="text" name="comment" id="comment"></textarea>
 							</div>
 							<input type="submit" value="Submit Comment">
