@@ -59,6 +59,17 @@
 							<input type="submit" value="Submit Comment">
 						</form>
 					</div>
+					<div class="comment-body">
+						<h4>Post an Answer</h4>
+						<form method="post", action"">
+							{% csrf_token %}
+							<div class="input-wrapper">
+								<h5>Add an Answer</h5>
+								<textarea type="text" name="answer" id="answer"></textarea>
+							</div>
+							<input type="submit" value="Submit Comment">
+						</form>
+					</div>
 				</div>
 			{% endif %}
 		</div>
