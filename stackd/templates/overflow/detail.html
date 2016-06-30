@@ -6,6 +6,17 @@
 		<h2>{{question}}</h2>
 	</div>
 	<div id="detail-body" class="col-2-3">
+		<div id="question-score">
+			<h5>{{question.netvotes}}</h5>
+			<h6>
+				<span>{{question.upvotes}}</span>
+				<div class="thumb-up"></div>
+			</h6>
+			<h6>
+				<span>{{question.downvotes}}</span>
+				<div class="thumb-down"></div>
+			</h6>
+		</div>
 		<div id="detail-question">
 			{{question.question_detail}}
 		</div>
@@ -33,11 +44,11 @@
 							<div class="comment-label cf">
 								<div class="comment-vote">
 									<h5 class="upvote">
-										<span>thumb up</span>
+										<span>thumb up ({{comment.upvotes}})</span>
 										<div class="thumb-up"></div>
 									</h5>
 									<h5 class="downvote">
-										<span>thumb down</span>
+										<span>thumb down ({{comment.downvotes}})</span>
 										<div class="thumb-down"></div>
 									</h5>
 								</div>
@@ -60,7 +71,6 @@
 						<form method="post", action"">
 							{% csrf_token %}
 							<div class="input-wrapper">
-								<h5>Add a Comment</h5>
 								<textarea type="text" name="comment" id="comment"></textarea>
 							</div>
 							<input type="submit" value="Submit Comment">
@@ -77,6 +87,17 @@
 		<div id="answers-body" class="col-2-3">
 			{% for answer in answer_list %}
 				<div class="answer">
+					<div id="question-score">
+						<h5>{{answer.netvotes}}</h5>
+						<h6>
+							<span>{{answer.upvotes}}</span>
+							<div class="thumb-up"></div>
+						</h6>
+						<h6>
+							<span>{{answer.downvotes}}</span>
+							<div class="thumb-down"></div>
+						</h6>
+					</div>
 					<div class="answer-detail">
 						{{answer.answer_text}}
 					</div>
@@ -85,6 +106,9 @@
 							<h5>{{answer.netvotes}}</h5>
 						{% endif %}
 						<h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
+					</div>
+					<div class="answer-comments">
+						
 					</div>
 				</div>
 			{% endfor %}
