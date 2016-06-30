@@ -65,7 +65,7 @@ def detail(request, question_id):
        'comment_list': comment_list,
        'answer_list': answer_list,
        # 'AnswerComment_list': AnswerComment_list,
-       # 'list_AnswerComment_list': list_AnswerComment_list,
+       'list_AnswerComment_list': list_AnswerComment_list,
        'tags': tags
    }
    # upvote = request.POST.get('upvote')
