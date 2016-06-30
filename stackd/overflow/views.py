@@ -44,10 +44,12 @@ def detail(request, question_id):
        print "added answer to question"
        add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
+   tags = question.tags.split(' ')
    context = {
        'question': question,
        'comment_list': comment_list,
-       'answer_list': answer_list
+       'answer_list': answer_list,
+       'tags' : tags
        # 'AnswerComment_list': AnswerComment_list
    }
 
