@@ -10,11 +10,11 @@
 			<h5>{{question.netvotes}}</h5>
 			<h6>
 				<span>{{question.upvotes}}</span>
-				<div class="thumb-up"></div>
+				<a href = "/{{question.id}}/q/tu"><div class="thumb-up"></div></a>
 			</h6>
 			<h6>
 				<span>{{question.downvotes}}</span>
-				<div class="thumb-down"></div>
+				<a href = "/{{question.id}}/q/td"><div class="thumb-down"></div></a>
 			</h6>
 		</div>
 		<div id="detail-question">
@@ -44,12 +44,12 @@
 							<div class="comment-label cf">
 								<div class="comment-vote">
 									<h5 class="upvote">
-										<span><a href = "/{{comment.id}}/tu">thumb up </a>({{comment.upvotes}})</span>
-										<div class="thumb-up"></div>
+										<span><a href = "/{{comment.id}}/tu">thumb up ({{comment.upvotes}})</span>
+										<div class="thumb-up"></div></a>
 									</h5>
 									<h5 class="downvote">
-										<span><a href = "/{{comment.id}}/td">thumb down ({{comment.downvotes}})</a></span>
-										<div class="thumb-down"></div>
+										<span><a href = "/{{comment.id}}/td">thumb down ({{comment.downvotes}})</span>
+										<div class="thumb-down"></div></a>
 									</h5>
 								</div>
 								<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>

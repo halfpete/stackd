@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^(?P<comment_id>[0-9]+)/tu$', views.thumbup_comment, name='tuc'),
     url(r'^(?P<comment_id>[0-9]+)/td$', views.thumbdown_comment, name='tdc'),
+    url(r'^(?P<question_id>[0-9]+)/q/tu$', views.thumbup_question, name='tuq'),
+    url(r'^(?P<question_id>[0-9]+)/q/td$', views.thumbdown_question, name='tdq'),
 ]
