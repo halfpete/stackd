@@ -32,6 +32,18 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def thumbup_question(request, question_id):
+    question = Question.objects.get(id = question_id)
+    upvote_object(request, question)
+    question.save()
+    return HttpResponseRedirect('/%s/' %(question.id))
+
+def thumbdown_question(request, question_id):
+    question = Question.objects.get(id = question_id)
+    downvote_object(request, question)
+    question.save()
+    return HttpResponseRedirect('/%s/' %(question.id))
+
 def thumbup_comment(request, comment_id):
     comment = Comment.objects.get(id = comment_id)
     upvote_object(request, comment)
