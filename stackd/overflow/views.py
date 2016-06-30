@@ -22,6 +22,7 @@ from .forms import LoginForm, RegisterForm
 register_errors = ["Indicates Successful Login, never reached", "Your password and confirmation did not match", "That Username already exists",\
                    "There was an error in the form data"]
 
+
 def index(request):
     question_list = Question.objects.order_by('-pub_date')
     template = loader.get_template('overflow/index.html')
@@ -37,13 +38,6 @@ def detail(request, question_id):
    new_comment = request.POST.get('comment', '')
    new_answer = request.POST.get('answer', '')
 
-   try:
-       answer = Answer.objects.get(question=question)
-   except Answer.DoesNotExist:
-       answer = None
-
-   new_answer_comment = request.POST.get('AnswerComment', '')
-
    if username != '' and new_comment != '':
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
@@ -52,19 +46,24 @@ def detail(request, question_id):
        print "added answer to question"
        add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
-   if username != '' and new_answer_comment != '' and answer != None:
-       print "added answer to question"
-       add_comment_to_answer(request, answer, new_answer_comment, username)
-   if answer != None:
-       AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
-   else:
-       AnswerComment_list = None
+
+   list_AnswerComment_list = []
+
+   for answer in answer_list:
+       new_answer_comment = request.POST.get('AnswerComment', '')
+       if username != '' and new_answer_comment != '':
+           add_comment_to_answer(request, answer, new_answer_comment, username)
+           # AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
+           list_AnswerComment_list.append(answer.AnswerComment_set.order_by('upvotes'))
+
+
    tags = question.tags.split(' ')
    context = {
        'question': question,
        'comment_list': comment_list,
        'answer_list': answer_list,
-       'AnswerComment_list': AnswerComment_list,
+       # 'AnswerComment_list': AnswerComment_list,
+       'list_AnswerComment_list': list_AnswerComment_list,
        'tags': tags
    }
    # upvote = request.POST.get('upvote')
