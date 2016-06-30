@@ -37,24 +37,35 @@ def detail(request, question_id):
    new_comment = request.POST.get('comment', '')
    new_answer = request.POST.get('answer', '')
 
+   try:
+       answer = Answer.objects.get(question=question)
+   except Answer.DoesNotExist:
+       answer = None
+
+   new_answer_comment = request.POST.get('AnswerComment', '')
+
    if username != '' and new_comment != '':
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
+
    if username != '' and new_answer != '':
        print "added answer to question"
        add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
+
+   if username != '' and new_answer_comment != '' and answer != None:
+       print "added answer to question"
+       add_comment_to_answer(request, answer, new_answer_comment, username)
+   if answer != None:
+       AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
+   else:
+       AnswerComment_list = None
    context = {
        'question': question,
        'comment_list': comment_list,
-       'answer_list': answer_list
-       # 'AnswerComment_list': AnswerComment_list
+       'answer_list': answer_list,
+       'AnswerComment_list': AnswerComment_list
    }
-
-   # new_answer_comment = request.POST.get('answer_comment', '')
-   #
-   # if username != '' and new_answer_comment != '':
-   #     add_comment_to_answer(request, question, new_answer_comment, username)
 
    # upvote = request.POST.get('upvote')
    # downvote = request.POST.get('downvote')
