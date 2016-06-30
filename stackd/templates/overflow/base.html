@@ -34,7 +34,7 @@
             </a>
             <nav>
                 {% if user.is_authenticated %}
-                    <h4>logged in as {{user.username}}</h4>
+                    <h4>logged in as <span>{{user.username}}</span></h4>
                     <a href="/post">Post a Question</a>
                     <a href="/logout">Logout</a>
                 {% else %}

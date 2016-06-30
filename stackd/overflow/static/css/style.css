@@ -694,6 +694,9 @@ header nav a:hover {
 header nav h4 {
     color: #aaa;
 }
+header nav h4 span {
+    color: #2F96E8;
+}
 
 /**
  * 5.0 Content
@@ -853,6 +856,9 @@ header nav h4 {
 /*end post*/
 
 /*detail*/
+#detail {
+    padding-bottom: 150px;
+}
 #detail-header {
     padding: 25px 0 5px;
     border-bottom: 1px solid #e4e6e8;
@@ -875,12 +881,24 @@ header nav h4 {
     margin: 0;
 }
 #detail-labels {
-    padding-bottom: 20px;
+    padding: 0 0 20px 20px;
     border-bottom: 1px solid #ddd;
 }
-#detail-question {
+#detail-question,
+.answer-detail {
     padding: 20px;
     font-size: 16px;
+}
+.tags {
+    float: left;
+}
+.tag {
+    display: inline-block;
+    background-color: #2F96E8;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 #comments {
     padding-left: 60px;
@@ -947,13 +965,16 @@ header nav h4 {
     color: #777;
     margin: 0;
 }
-.comment form {
+.comment form,
+#answers-form form {
     text-align: right;
 }
-.comment form .input-wrapper {
+.comment form .input-wrapper,
+#answers-form form .input-wrapper {
     margin-bottom: 10px;
 }
-.comment form h5 {
+.comment form h5,
+#answers-form form h5 {
     font-weight: 400;
     margin: 0;
     font-size: 12px;
@@ -961,14 +982,17 @@ header nav h4 {
     text-align: left;
 }
 .comment form input, 
-.comment form textarea {
+.comment form textarea,
+#answers-form form input, 
+#answers-form form textarea {
     border: 1px solid #ddd;
     width: 100%;
     max-width: 100%;
     padding: 6px 10px;
     font-size: 12px;
 }
-.comment form input[type="submit"] {
+.comment form input[type="submit"],
+#answers-form form input[type="submit"] {
     width: auto;
     background-color: #0095ff;
     border: none;
@@ -978,6 +1002,23 @@ header nav h4 {
     box-shadow: inset 0 1px 0 #66bfff;
     transition: background-color .3s;
     display: inline-block;
+}
+#answers-header {
+    padding: 130px 0 0;
+    border-bottom: 1px solid #ddd;
+}
+.answer {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+.answer-label {
+    padding-top: 20px;
+    text-align: right;
+    font-size: 12px;
+    color: #777;
+}
+.answer-label h4 {
+    margin: 0;
 }
 /*end detail*/
 
