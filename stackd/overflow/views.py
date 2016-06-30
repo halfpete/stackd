@@ -57,7 +57,7 @@ def detail(request, question_id):
            list_AnswerComment_list.append(answer.AnswerComment_set.order_by('upvotes'))
 
 
-   tags = question.tags.split(' ')
+   tags = question.tags.split(', ')
    context = {
        'question': question,
        'comment_list': comment_list,
