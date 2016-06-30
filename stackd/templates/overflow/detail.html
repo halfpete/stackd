@@ -120,17 +120,19 @@
 			</div>
 		</div>
 	{% endif %}
-	<div id="answers-form" class="col-2-3">
-		<div class="answer">
-			<form method="post", action"">
-				{% csrf_token %}
-				<div class="input-wrapper">
-					<h5>Add an Answer</h5>
-					<textarea type="text" name="answer" id="answer"></textarea>
-				</div>
-				<input type="submit" value="Submit Answer">
-			</form>
+	{% if user.is_authenticated %}
+		<div id="answers-form" class="col-2-3">
+			<div class="answer">
+				<form method="post", action"">
+					{% csrf_token %}
+					<div class="input-wrapper">
+						<h5>Add an Answer</h5>
+						<textarea type="text" name="answer" id="answer"></textarea>
+					</div>
+					<input type="submit" value="Submit Answer">
+				</form>
+			</div>
 		</div>
-	</div>
+	{% endif %}
 </div>
 {% endblock %}
