@@ -37,23 +37,21 @@ def detail(request, question_id):
    question = Question.objects.get(id=question_id)
    username = request.user.username
    new_comment = request.POST.get('comment', '')
+   new_answer = request.POST.get('answer', '')
 
    if username != '' and new_comment != '':
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
+   if username != '' and new_answer != '':
+       print "added answer to question"
+       add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
-   # AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
    context = {
        'question': question,
        'comment_list': comment_list,
        'answer_list': answer_list
        # 'AnswerComment_list': AnswerComment_list
    }
-
-   answer_text = request.POST.get('answer_text', '')
-   if username != '' and answer_text != '':
-       print "added answer to question"
-       add_answer_to_question(request, question, answer_text, username)
 
    # new_answer_comment = request.POST.get('answer_comment', '')
    #

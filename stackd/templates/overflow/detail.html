@@ -52,10 +52,6 @@
 					<form method="post", action"">
 						{% csrf_token %}
 						<div class="input-wrapper">
-							<h5>Email</h5>
-							<input type="email" name="email_field" id="email_field">
-						</div>
-						<div class="input-wrapper">
 							<h5>Add a Comment</h5>
 							<textarea type="text" name="comment" id="comment"></textarea>
 						</div>
@@ -65,22 +61,5 @@
 			</div>
 		</div>
 	</div>
-	{{answer_list}}
-	{% if answer_list %}
-		<div id="answers-header" class="col-1-1">
-			<h2>Answers</h2>
-		</div>
-		<div id="answers-body" class="col-2-3">
-			{% for answer in answer_list %}
-				<div class="answer">
-					<p>{{answer.answer_text}}</p>
-					<div class="answer-label">
-						<h5>{{answer.netvotes}}</h5>
-						<h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
 </div>
 {% endblock %}
