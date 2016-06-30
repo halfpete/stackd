@@ -43,7 +43,6 @@ def detail(request, question_id):
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
    if username != '' and new_answer != '':
-       print "added answer to question"
        add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
    context = {

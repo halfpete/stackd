@@ -3,15 +3,13 @@ from django.utils import timezone
 
 
 def add_comment_to_question(request, question, text, email):
-    c = Question_Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
+    c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
     c.save()
-    print "comment added to question"
 
-
-def add_comment_to_answer(request, answer, text, email):
-    c = Comment(question=None, answer=answer, comment_text=text, author=email, pub_date=timezone.now())
-    c.save()
-    print "comment added to answer"
+# def add_comment_to_answer(request, answer, text, email):
+#     c = Comment(question=None, answer=answer, comment_text=text, author=email, pub_date=timezone.now())
+#     c.save()
+#     print "comment added to answer"
 
 
 def upvote(request, question):
