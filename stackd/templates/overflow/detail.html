@@ -46,19 +46,21 @@
 					</div>
 				</div> -->
 			{% endif %}
-			<div class="comment">
-				<div class="comment-body">
-					<h4>Post a Comment</h4>
-					<form method="post", action"">
-						{% csrf_token %}
-						<div class="input-wrapper">
-							<h5>Add a Comment</h5>
-							<textarea type="text" name="comment" id="comment"></textarea>
-						</div>
-						<input type="submit" value="Submit Comment">
-					</form>
+			{% if user.is_authenticated %}
+				<div class="comment">
+					<div class="comment-body">
+						<h4>Post a Comment</h4>
+						<form method="post", action"">
+							{% csrf_token %}
+							<div class="input-wrapper">
+								<h5>Add a Comment</h5>
+								<textarea type="text" name="comment" id="comment"></textarea>
+							</div>
+							<input type="submit" value="Submit Comment">
+						</form>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div>
 	{% if answer_list %}
