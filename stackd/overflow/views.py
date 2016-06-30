@@ -52,7 +52,6 @@ def detail(request, question_id):
        print "added answer to question"
        add_answer_to_question(request, question, new_answer, username)
    answer_list = question.answer_set.order_by('upvotes')
-
    if username != '' and new_answer_comment != '' and answer != None:
        print "added answer to question"
        add_comment_to_answer(request, answer, new_answer_comment, username)
@@ -60,13 +59,14 @@ def detail(request, question_id):
        AnswerComment_list = answer.AnswerComment_set.order_by('upvotes')
    else:
        AnswerComment_list = None
+   tags = question.tags.split(' ')
    context = {
        'question': question,
        'comment_list': comment_list,
        'answer_list': answer_list,
-       'AnswerComment_list': AnswerComment_list
+       'AnswerComment_list': AnswerComment_list,
+       'tags': tags
    }
-
    # upvote = request.POST.get('upvote')
    # downvote = request.POST.get('downvote')
 

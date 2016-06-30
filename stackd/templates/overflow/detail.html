@@ -2,82 +2,99 @@
 
 {% block content %}
 <div id="detail" class="grid cf">
-	<div id="detail-header" class="col-1-1">
-		<h2>{{question}}</h2>
-	</div>
-	<div id="detail-body" class="col-2-3">
-		<div id="detail-question">
-			{{question.question_detail}}
-		</div>
-		<div id="detail-labels">
-			<h3>posted by {{question.author}} on {{question.pub_date}}</h3>
-		</div>
-		<div id="comments">
-			{% if comment_list %}
-				{% for comment in comment_list %}
-					<div class="comment cf">
-						<div class="comment-score">
-							{% if comment.netvotes != 0 %}
-								<h4>{{comment.netvotes}}</h4>
-							{% endif %}
-						</div>
-						<div class="comment-body">
-							<p>{{comment.comment_text}}</p>
-							<div class="comment-label cf">
-								<div class="comment-vote">
-									<h5 class="upvote">
-										<span>thumb up</span>
-										<div class="thumb-up"></div>
-									</h5>
-									<h5 class="downvote">
-										<span>thumb down</span>
-										<div class="thumb-down"></div>
-									</h5>
-								</div>
-								<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
-			{% else %}
-				<!-- <div class="comment">
-					<div class="comment-body">
-						<p>no comments</p>
-					</div>
-				</div> -->
-			{% endif %}
-			{% if user.is_authenticated %}
-				<div class="comment">
-					<div class="comment-body">
-						<h4>Post a Comment</h4>
-						<form method="post", action"">
-							{% csrf_token %}
-							<div class="input-wrapper">
-								<h5>Add a Comment</h5>
-								<textarea type="text" name="comment" id="comment"></textarea>
-							</div>
-							<input type="submit" value="Submit Comment">
-						</form>
-					</div>
-				</div>
-			{% endif %}
-		</div>
-	</div>
-	{% if answer_list %}
-		<div id="answers-header" class="col-1-1">
-			<h2>Answers</h2>
-		</div>
-		<div id="answers-body" class="col-2-3">
-			{% for answer in answer_list %}
-				<div class="answer">
-					<p>{{answer.answer_text}}</p>
-					<div class="answer-label">
-						<h5>{{answer.netvotes}}</h5>
-						<h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+    <div id="detail-header" class="col-1-1">
+        <h2>{{question}}</h2>
+    </div>
+    <div id="detail-body" class="col-2-3">
+        <div id="detail-question">
+            {{question.question_detail}}
+        </div>
+        {% for tag in tags%}
+        <div>
+            {{ tag }}
+        </div>
+        {% endfor %}
+
+        <div id="detail-labels">
+            <h3>posted by {{question.author}} on {{question.pub_date}}</h3>
+        </div>
+        <div id="comments">
+            {% if comment_list %}
+                {% for comment in comment_list %}
+                    <div class="comment cf">
+                        <div class="comment-score">
+                            {% if comment.netvotes != 0 %}
+                                <h4>{{comment.netvotes}}</h4>
+                            {% endif %}
+                        </div>
+                        <div class="comment-body">
+                            <p>{{comment.comment_text}}</p>
+                            <div class="comment-label cf">
+                                <div class="comment-vote">
+                                    <h5 class="upvote">
+                                        <span>thumb up</span>
+                                        <div class="thumb-up"></div>
+                                    </h5>
+                                    <h5 class="downvote">
+                                        <span>thumb down</span>
+                                        <div class="thumb-down"></div>
+                                    </h5>
+                                </div>
+                                <h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- <div class="comment">
+                    <div class="comment-body">
+                        <p>no comments</p>
+                    </div>
+                </div> -->
+            {% endif %}
+            {% if user.is_authenticated %}
+                <div class="comment">
+                    <div class="comment-body">
+                        <h4>Post a Comment</h4>
+                        <form method="post", action"">
+                            {% csrf_token %}
+                            <div class="input-wrapper">
+                                <h5>Add a Comment</h5>
+                                <textarea type="text" name="comment" id="comment"></textarea>
+                            </div>
+                            <input type="submit" value="Submit Comment">
+                        </form>
+                    </div>
+                    <div class="comment-body">
+                        <h4>Post an Answer</h4>
+                        <form method="post", action"">
+                            {% csrf_token %}
+                            <div class="input-wrapper">
+                                <h5>Add an Answer</h5>
+                                <textarea type="text" name="answer" id="answer"></textarea>
+                            </div>
+                            <input type="submit" value="Submit Comment">
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if answer_list %}
+        <div id="answers-header" class="col-1-1">
+            <h2>Answers</h2>
+        </div>
+        <div id="answers-body" class="col-2-3">
+            {% for answer in answer_list %}
+                <div class="answer">
+                    <p>{{answer.answer_text}}</p>
+                    <div class="answer-label">
+                        <h5>{{answer.netvotes}}</h5>
+                        <h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
