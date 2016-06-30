@@ -13,10 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='question',
-            name='userID',
-        ),
         migrations.AddField(
             model_name='comment',
             name='answer',

@@ -13,34 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Answer_Comment',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment_text', models.TextField(max_length=20000)),
-                ('author', models.CharField(default='anonymous@pandora.com', max_length=200)),
-                ('upvotes', models.IntegerField(default=0)),
-                ('downvotes', models.IntegerField(default=0)),
-                ('pub_date', models.DateTimeField(verbose_name='date published')),
-                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='overflow.Answer')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Question_Comment',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment_text', models.TextField(max_length=20000)),
-                ('author', models.CharField(default='anonymous@pandora.com', max_length=200)),
-                ('upvotes', models.IntegerField(default=0)),
-                ('downvotes', models.IntegerField(default=0)),
-                ('pub_date', models.DateTimeField(verbose_name='date published')),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='overflow.Question')),
-            ],
-        ),
-        migrations.RemoveField(
-            model_name='comment',
-            name='answer',
-        ),
         migrations.RemoveField(
             model_name='comment',
             name='question',

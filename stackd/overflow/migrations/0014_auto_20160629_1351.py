@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='pub_date',
-            field=models.DateTimeField(default='1/1/1950', verbose_name='date published'),
+            field=models.DateTimeField(verbose_name='date published'),
         ),
         migrations.AddField(
             model_name='answer',
