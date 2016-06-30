@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 def add_comment_to_answer(request, answer, text, userID):
-    c = AnswerComment(question=None, answer=answer, comment_text=text, author=userID, pub_date=timezone.now())
+    c = AnswerComment(answer=answer, comment_text=text, author=userID, pub_date=timezone.now())
     c.save()
     print "comment added to answer"
 
