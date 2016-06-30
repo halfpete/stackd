@@ -694,6 +694,9 @@ header nav a:hover {
 header nav h4 {
     color: #aaa;
 }
+header nav h4 span {
+    color: #2F96E8;
+}
 
 /**
  * 5.0 Content
