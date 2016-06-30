@@ -52,10 +52,6 @@
 					<form method="post", action"">
 						{% csrf_token %}
 						<div class="input-wrapper">
-							<h5>Email</h5>
-							<input type="email" name="email_field" id="email_field">
-						</div>
-						<div class="input-wrapper">
 							<h5>Add a Comment</h5>
 							<textarea type="text" name="comment" id="comment"></textarea>
 						</div>
@@ -64,12 +60,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="answers-header" class="col-1-1">
-		<h2>Answers</h2>
-	</div>
-	<div id="answers-body" class="col-2-3">
-		
 	</div>
 </div>
 {% endblock %}

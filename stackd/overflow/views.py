@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 # from controllers.answer_comments import add_comment_to_answer
 from controllers.answers import add_answer_to_question
-from controllers.question_comments import add_comment_to_question
+from controllers.answercomments import add_comment_to_answer
+from controllers.questioncomments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
 from controllers.register import check_and_register_user
 from controllers.login import log_user_in, log_user_out
-from .models import Question#, Comment, AnswerComment, Answer
+from .models import Question, Comment, AnswerComment, Answer
 # from django.utils import timezone
-from django.template import loader#, RequestContext
+from django.template import loader, RequestContext
 # from django.db import connection
 # from django.contrib.auth import authenticate, login
 
@@ -36,21 +37,26 @@ def detail(request, question_id):
    question = Question.objects.get(id=question_id)
    username = request.user.username
    new_comment = request.POST.get('comment', '')
+   new_answer = request.POST.get('answer', '')
 
    if username != '' and new_comment != '':
        add_comment_to_question(request, question, new_comment, username)
    comment_list = question.comment_set.order_by('-pub_date')
-   answer = question.answer_set.order_by('upvotes')
+   if username != '' and new_answer != '':
+       print "added answer to question"
+       add_answer_to_question(request, question, new_answer, username)
+   answer_list = question.answer_set.order_by('upvotes')
    context = {
        'question': question,
        'comment_list': comment_list,
-       'answer': answer
+       'answer_list': answer_list
+       # 'AnswerComment_list': AnswerComment_list
    }
 
-   answer_text = request.POST.get('answer_text', '')
-   if username != '' and answer_text != '':
-       print "added answer to question"
-       add_answer_to_question(request, question, answer_text, username)
+   # new_answer_comment = request.POST.get('answer_comment', '')
+   #
+   # if username != '' and new_answer_comment != '':
+   #     add_comment_to_answer(request, question, new_answer_comment, username)
 
    # upvote = request.POST.get('upvote')
    # downvote = request.POST.get('downvote')
@@ -71,33 +77,12 @@ def post(request):
     return render(request, 'overflow/post.html')
 
 
-# def add_new_question_to_database(request, title, detail, tags, email):
-#     q = Question(author=email, question_title=title, question_detail=detail, tags=tags, pub_date=timezone.now(),
-#                  status='unsolved')
-#     q.save()
-#     print "question added"
-#
-#
-# def add_comment_to_question(request, question, text, email):
-#     c = Comment(question=question, comment_text=text, author=email, pub_date=timezone.now())
-#     c.save()
-#
-#
-# def add_comment_to_answer(request, answer, text, email):
-#     c = Comment(answer=answer, comment_text=text, author=email, pub_date=timezone.now())
-#     c.save()
-#
-#
-# def add_answer_to_question(request, question, text, email):
-#     a = Answer(question=question, answer_text=text, author=email, pub_date=timezone.now())
-#     a.save()
-
-
 def upvote_object(request, target):
     target.upvotes += 1
 
 def downvote_object (request, target):
     target.downvotes += 1
+
 
 def user_logout(request):
     log_user_out(request)
