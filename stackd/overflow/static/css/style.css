@@ -657,9 +657,16 @@ header #logo:visited {
     color: #fff;
     text-decoration: none;
 }
-header #logo i {
+header #header-logo {
     display: inline-block;
-    line-height: 34px;
+    height: 20px;
+    width: 20px;
+    margin: 7px 0;
+    vertical-align: middle;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/stackdpandora_square_white.png);
 }
 header #logo h1 {
     display: inline-block;
@@ -667,6 +674,7 @@ header #logo h1 {
     font-size: 13px;
     line-height: 34px;
     font-weight: 400;
+    vertical-align: middle;
 }
 header #logo h1 span {
     color: #2F96E8;
@@ -676,7 +684,9 @@ header nav {
 }
 header nav a,
 header nav a:link,
-header nav a:visited {
+header nav a:visited,
+header nav h4 {
+    margin: 0;
     display: inline-block;
     padding: 0 5px;
     color: #e4e6e8;
@@ -689,10 +699,26 @@ header nav a:visited {
 header nav a:hover {
     background-color: #3b4045;
 }
+header nav h4 {
+    color: #aaa;
+}
+header nav h4 span {
+    color: #2F96E8;
+}
 
 /**
  * 5.0 Content
  */
+
+#banner-logo {
+    width: 100%;
+    height: 70px;
+    margin-top: 30px;
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-image: url(../img/stackdpandora.png);
+}
 
 /*login*/
 #login form {
@@ -838,6 +864,9 @@ header nav a:hover {
 /*end post*/
 
 /*detail*/
+#detail {
+    padding-bottom: 150px;
+}
 #detail-header {
     padding: 25px 0 5px;
     border-bottom: 1px solid #e4e6e8;
@@ -853,6 +882,23 @@ header nav a:hover {
     margin: 0;
     margin-bottom: .5em;
 }
+#question-score {
+    text-align: center;
+    position: absolute;
+    width: 50px;
+    padding: 20px 0;
+    color: #aaa;
+}
+#question-score h5 {
+    line-height: 18px;
+    margin: 0 0 15px;
+    font-size: 18px;
+}
+#question-score h6 {
+    margin: 0;
+    padding-right: 10px;
+    text-align: right;
+}
 #detail-labels h3 {
     font-size: 12px;
     color: #777;
@@ -860,12 +906,24 @@ header nav a:hover {
     margin: 0;
 }
 #detail-labels {
-    padding-bottom: 20px;
+    padding: 0 0 20px 50px;
     border-bottom: 1px solid #ddd;
 }
-#detail-question {
-    padding: 20px;
+#detail-question,
+.answer-detail {
+    padding: 20px 50px;
     font-size: 16px;
+}
+.tags {
+    float: left;
+}
+.tag {
+    display: inline-block;
+    background-color: #2F96E8;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 #comments {
     padding-left: 60px;
@@ -910,8 +968,15 @@ header nav a:hover {
 .comment-vote h5:hover {
     color: #555;
 }
-.comment .thumb-up,
-.comment .thumb-down {
+.comment-vote h5 a, 
+.comment-vote h5 a:link, 
+.comment-vote h5 a:active, 
+.comment-vote h5 a:visited {
+    text-decoration: none;
+    color: #777;
+}
+.thumb-up,
+.thumb-down {
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -920,10 +985,10 @@ header nav a:hover {
     background-repeat: no-repeat;
     opacity: .5;
 }
-.comment .thumb-up {
+.thumb-up {
     background-image: url(../img/thumb_up.png);
 }
-.comment .thumb-down {
+.thumb-down {
     background-image: url(../img/thumb_down.png);
 }
 .comment-label h3 {
@@ -932,13 +997,16 @@ header nav a:hover {
     color: #777;
     margin: 0;
 }
-.comment form {
+.comment form,
+#answers-form form {
     text-align: right;
 }
-.comment form .input-wrapper {
+.comment form .input-wrapper,
+#answers-form form .input-wrapper {
     margin-bottom: 10px;
 }
-.comment form h5 {
+.comment form h5,
+#answers-form form h5 {
     font-weight: 400;
     margin: 0;
     font-size: 12px;
@@ -946,14 +1014,17 @@ header nav a:hover {
     text-align: left;
 }
 .comment form input, 
-.comment form textarea {
+.comment form textarea,
+#answers-form form input, 
+#answers-form form textarea {
     border: 1px solid #ddd;
     width: 100%;
     max-width: 100%;
     padding: 6px 10px;
     font-size: 12px;
 }
-.comment form input[type="submit"] {
+.comment form input[type="submit"],
+#answers-form form input[type="submit"] {
     width: auto;
     background-color: #0095ff;
     border: none;
@@ -963,6 +1034,22 @@ header nav a:hover {
     box-shadow: inset 0 1px 0 #66bfff;
     transition: background-color .3s;
     display: inline-block;
+}
+#answers-header {
+    padding: 65px 0 0;
+    border-bottom: 1px solid #ddd;
+}
+.answer {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+.answer-label {
+    text-align: right;
+    font-size: 12px;
+    color: #777;
+}
+.answer-label h4 {
+    margin: 0;
 }
 /*end detail*/
 

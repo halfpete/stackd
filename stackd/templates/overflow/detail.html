@@ -6,10 +6,28 @@
 		<h2>{{question}}</h2>
 	</div>
 	<div id="detail-body" class="col-2-3">
+		<div id="question-score">
+			<h5>{{question.netvotes}}</h5>
+			<h6>
+				<span>{{question.upvotes}}</span>
+				<a href = "/{{question.id}}/q/tu"><div class="thumb-up"></div></a>
+			</h6>
+			<h6>
+				<span>{{question.downvotes}}</span>
+				<a href = "/{{question.id}}/q/td"><div class="thumb-down"></div></a>
+			</h6>
+		</div>
 		<div id="detail-question">
 			{{question.question_detail}}
 		</div>
 		<div id="detail-labels">
+			{% if tags %}
+				<div class="tags">
+					{% for tag in tags%}
+				        <div class="tag">{{ tag }}</div>
+			        {% endfor %}
+			    </div>
+		    {% endif %}
 			<h3>posted by {{question.author}} on {{question.pub_date}}</h3>
 		</div>
 		<div id="comments">
@@ -26,12 +44,12 @@
 							<div class="comment-label cf">
 								<div class="comment-vote">
 									<h5 class="upvote">
-										<span>thumb up</span>
-										<div class="thumb-up"></div>
+										<span><a href = "/{{comment.id}}/tu">{{comment.upvotes}}</span>
+										<div class="thumb-up"></div></a>
 									</h5>
 									<h5 class="downvote">
-										<span>thumb down</span>
-										<div class="thumb-down"></div>
+										<span><a href = "/{{comment.id}}/td">{{comment.downvotes}}</span>
+										<div class="thumb-down"></div></a>
 									</h5>
 								</div>
 								<h3>posted by {{comment.author}} on {{comment.pub_date}}</h3>
@@ -46,20 +64,75 @@
 					</div>
 				</div> -->
 			{% endif %}
-			<div class="comment">
-				<div class="comment-body">
-					<h4>Post a Comment</h4>
-					<form method="post", action"">
-						{% csrf_token %}
-						<div class="input-wrapper">
-							<h5>Add a Comment</h5>
-							<textarea type="text" name="comment" id="comment"></textarea>
-						</div>
-						<input type="submit" value="Submit Comment">
-					</form>
+			{% if user.is_authenticated %}
+				<div class="comment">
+					<div class="comment-body">
+						<form method="post", action"">
+							{% csrf_token %}
+							<div class="input-wrapper">
+								<h5>Add a comment</h5>
+								<textarea type="text" name="comment" id="comment"></textarea>
+							</div>
+							<input type="submit" value="Submit Comment">
+						</form>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div>
+	<div id="answers-header" class="col-1-1">
+		<h2>Answers</h2>
+	</div>
+	{% if answer_list %}
+		<div id="answers-body" class="col-2-3">
+			{% for answer in answer_list %}
+				<div class="answer">
+					<div id="question-score">
+						<h5>{{answer.netvotes}}</h5>
+						<h6>
+							<span>{{answer.upvotes}}</span>
+							<a href = "/{{answer.id}}/a/tu"><div class="thumb-up"></div></a>
+						</h6>
+						<h6>
+							<span>{{answer.downvotes}}</span>
+							<a href = "/{{answer.id}}/a/td"><div class="thumb-down"></div></a>
+						</h6>
+					</div>
+					<div class="answer-detail">
+						{{answer.answer_text}}
+					</div>
+					<div class="answer-label">
+						{% if answer.netvotes != 0 %}
+							<h5>{{answer.netvotes}}</h5>
+						{% endif %}
+						<h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
+					</div>
+					<div class="answer-comments">
+						
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+		<div id="answers-body" class="col-2-3">
+			<div class="answer">
+				<p>There are currently no answers.</p>
+			</div>
+		</div>
+	{% endif %}
+	{% if user.is_authenticated %}
+		<div id="answers-form" class="col-2-3">
+			<div class="answer">
+				<form method="post", action"">
+					{% csrf_token %}
+					<div class="input-wrapper">
+						<h5>Add an Answer</h5>
+						<textarea type="text" name="answer" id="answer"></textarea>
+					</div>
+					<input type="submit" value="Submit Answer">
+				</form>
+			</div>
+		</div>
+	{% endif %}
 </div>
 {% endblock %}

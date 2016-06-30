@@ -29,18 +29,27 @@
     <header>
         <div class="grid">
             <a href="/" id="logo">
-                <i class="fa fa-stack-overflow"></i>      
+                <div id="header-logo"></div>   
                 <h1>Stackd<span>Pandora</span></h1>   
             </a>
             <nav>
-                <a href="/post">Post a Question</a>
-                <a href="#0">Profile</a>
-                <a href="/logout">Logout</a>
+                {% if user.is_authenticated %}
+                    <h4>logged in as <span>{{user.username}}</span></h4>
+                    <a href="/post">Post a Question</a>
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
             </nav>
         </div>
     </header>
 
     <div id="page">
+        <div class="grid cf">
+            <div class="col-1-1">
+                <div id="banner-logo"></div>
+            </div>
+        </div>
         {% block content %}{% endblock %}
     </div>
 
