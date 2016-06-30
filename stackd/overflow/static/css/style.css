@@ -884,10 +884,12 @@ header nav h4 span {
 #question-score h5 {
     line-height: 18px;
     margin: 0 0 15px;
+    font-size: 18px;
 }
 #question-score h6 {
     margin: 0;
-    padding-left: 10px
+    padding-right: 10px;
+    text-align: right;
 }
 #detail-labels h3 {
     font-size: 12px;
