@@ -9,6 +9,7 @@ from controllers.questioncomments import add_comment_to_question
 from controllers.questions import add_new_question_to_database
 from controllers.register import check_and_register_user
 from controllers.login import log_user_in, log_user_out
+from controllers.comments import downvote
 from .models import Question, Comment, AnswerComment, Answer
 # from django.utils import timezone
 from django.template import loader, RequestContext
@@ -33,9 +34,15 @@ def index(request):
 
 def thumbup_comment(request, comment_id):
     comment = Comment.objects.get(id = comment_id)
-    comment.upvotes += 1
-    print "upvoted. upvotes ="
-    print comment.upvotes
+    upvote_object(request, comment)
+    comment.save()
+    question = comment.question.id
+    return HttpResponseRedirect('/%s/' %(question))
+
+def thumbdown_comment(request, comment_id):
+    comment = Comment.objects.get(id = comment_id)
+    downvote_object(request, comment)
+    comment.save()
     question = comment.question.id
     return HttpResponseRedirect('/%s/' %(question))
 
