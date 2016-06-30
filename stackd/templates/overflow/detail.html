@@ -9,6 +9,11 @@
 		<div id="detail-question">
 			{{question.question_detail}}
 		</div>
+		{% for tag in tags%}
+	        <div>
+	            {{ tag }}
+	        </div>
+        {% endfor %}
 		<div id="detail-labels">
 			<h3>posted by {{question.author}} on {{question.pub_date}}</h3>
 		</div>
