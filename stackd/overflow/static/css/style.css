@@ -881,13 +881,24 @@ header nav h4 span {
     margin: 0;
 }
 #detail-labels {
-    padding-bottom: 20px;
+    padding: 0 0 20px 20px;
     border-bottom: 1px solid #ddd;
 }
 #detail-question,
 .answer-detail {
     padding: 20px;
     font-size: 16px;
+}
+.tags {
+    float: left;
+}
+.tag {
+    display: inline-block;
+    background-color: #2F96E8;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 #comments {
     padding-left: 60px;
