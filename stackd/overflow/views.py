@@ -23,8 +23,6 @@ register_errors = ["Indicates Successful Login, never reached", "Your password a
                    "There was an error in the form data"]
 
 def index(request):
-    if not request.user:
-        return HttpResponseRedirect('overflow/login')
     question_list = Question.objects.order_by('-pub_date')
     template = loader.get_template('overflow/index.html')
     context = {
@@ -65,6 +63,8 @@ def detail(request, question_id):
 
 
 def post(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/overflow/login')
     # email = request.POST.get('email_field', '')
     username = request.user.username
     title = request.POST.get('title', '')
@@ -89,6 +89,8 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 def user_login(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
 
     # cobbled from the django tutorials
     if request.method == "POST":
@@ -104,6 +106,8 @@ def user_login(request):
 
 
 def register(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
