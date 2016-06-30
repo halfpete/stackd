@@ -49,7 +49,6 @@
 			{% if user.is_authenticated %}
 				<div class="comment">
 					<div class="comment-body">
-						<h4>Post a Comment</h4>
 						<form method="post", action"">
 							{% csrf_token %}
 							<div class="input-wrapper">
@@ -59,36 +58,47 @@
 							<input type="submit" value="Submit Comment">
 						</form>
 					</div>
-					<div class="comment-body">
-						<h4>Post an Answer</h4>
-						<form method="post", action"">
-							{% csrf_token %}
-							<div class="input-wrapper">
-								<h5>Add an Answer</h5>
-								<textarea type="text" name="answer" id="answer"></textarea>
-							</div>
-							<input type="submit" value="Submit Comment">
-						</form>
-					</div>
 				</div>
 			{% endif %}
 		</div>
 	</div>
+	<div id="answers-header" class="col-1-1">
+		<h2>Answers</h2>
+	</div>
 	{% if answer_list %}
-		<div id="answers-header" class="col-1-1">
-			<h2>Answers</h2>
-		</div>
 		<div id="answers-body" class="col-2-3">
 			{% for answer in answer_list %}
 				<div class="answer">
-					<p>{{answer.answer_text}}</p>
+					<div class="answer-detail">
+						{{answer.answer_text}}
+					</div>
 					<div class="answer-label">
-						<h5>{{answer.netvotes}}</h5>
+						{% if answer.netvotes != 0 %}
+							<h5>{{answer.netvotes}}</h5>
+						{% endif %}
 						<h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
+	{% else %}
+		<div id="answers-body" class="col-2-3">
+			<div class="answer">
+				<p>no answers yet</p>
+			</div>
+		</div>
 	{% endif %}
+	<div id="answers-form" class="col-2-3">
+		<div class="answer">
+			<form method="post", action"">
+				{% csrf_token %}
+				<div class="input-wrapper">
+					<h5>Add an Answer</h5>
+					<textarea type="text" name="answer" id="answer"></textarea>
+				</div>
+				<input type="submit" value="Submit Comment">
+			</form>
+		</div>
+	</div>
 </div>
 {% endblock %}
