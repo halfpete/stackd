@@ -676,7 +676,9 @@ header nav {
 }
 header nav a,
 header nav a:link,
-header nav a:visited {
+header nav a:visited,
+header nav h4 {
+    margin: 0;
     display: inline-block;
     padding: 0 5px;
     color: #e4e6e8;
@@ -688,6 +690,9 @@ header nav a:visited {
 }
 header nav a:hover {
     background-color: #3b4045;
+}
+header nav h4 {
+    color: #aaa;
 }
 
 /**

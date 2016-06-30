@@ -14,6 +14,7 @@
             {{ tag }}
         </div>
         {% endfor %}
+
         <div id="detail-labels">
             <h3>posted by {{question.author}} on {{question.pub_date}}</h3>
         </div>
@@ -51,20 +52,49 @@
                     </div>
                 </div> -->
             {% endif %}
-            <div class="comment">
-                <div class="comment-body">
-                    <h4>Post a Comment</h4>
-                    <form method="post", action"">
-                        {% csrf_token %}
-                        <div class="input-wrapper">
-                            <h5>Add a Comment</h5>
-                            <textarea type="text" name="comment" id="comment"></textarea>
-                        </div>
-                        <input type="submit" value="Submit Comment">
-                    </form>
+            {% if user.is_authenticated %}
+                <div class="comment">
+                    <div class="comment-body">
+                        <h4>Post a Comment</h4>
+                        <form method="post", action"">
+                            {% csrf_token %}
+                            <div class="input-wrapper">
+                                <h5>Add a Comment</h5>
+                                <textarea type="text" name="comment" id="comment"></textarea>
+                            </div>
+                            <input type="submit" value="Submit Comment">
+                        </form>
+                    </div>
+                    <div class="comment-body">
+                        <h4>Post an Answer</h4>
+                        <form method="post", action"">
+                            {% csrf_token %}
+                            <div class="input-wrapper">
+                                <h5>Add an Answer</h5>
+                                <textarea type="text" name="answer" id="answer"></textarea>
+                            </div>
+                            <input type="submit" value="Submit Comment">
+                        </form>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
+    {% if answer_list %}
+        <div id="answers-header" class="col-1-1">
+            <h2>Answers</h2>
+        </div>
+        <div id="answers-body" class="col-2-3">
+            {% for answer in answer_list %}
+                <div class="answer">
+                    <p>{{answer.answer_text}}</p>
+                    <div class="answer-label">
+                        <h5>{{answer.netvotes}}</h5>
+                        <h4>published by {{answer.author}} on {{answer.pub_date}}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
