@@ -960,6 +960,13 @@ header nav h4 span {
 .comment-vote h5:hover {
     color: #555;
 }
+.comment-vote h5 a, 
+.comment-vote h5 a:link, 
+.comment-vote h5 a:active, 
+.comment-vote h5 a:visited {
+    text-decoration: none;
+    color: #777;
+}
 .thumb-up,
 .thumb-down {
     display: inline-block;
