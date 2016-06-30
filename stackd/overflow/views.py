@@ -108,7 +108,7 @@ def register(request):
 
         check_and_register_user(form)
 
-        return HttpResponseRedirect('overflow/login.html')#HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : error, 'error_msg' : register_errors[error]}))
+        return HttpResponseRedirect('/login/')#HttpResponse(render(request, 'overflow/register.html', {'form': form, 'error' : error, 'error_msg' : register_errors[error]}))
     else:
         form = RegisterForm()
 
